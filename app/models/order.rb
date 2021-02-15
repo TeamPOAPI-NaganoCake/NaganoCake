@@ -1,5 +1,4 @@
 class Order < ApplicationRecord
-<<<<<<< HEAD
   belongs_to :customer
   has_many :order_products, dependent: :destroy
 
@@ -10,9 +9,6 @@ class Order < ApplicationRecord
   # 送料、請求額は数値のみ許可
   validates :shipping_price, :billing_amount, numericality: { only_integer: true }
 
-  
   enum payment_method: { "クレジットカード": 0, "銀行振込": 1 }
   enum order_status: {"入金待ち": 0, "入金確認": 1, "制作中": 2, "発送準備中": 3, "発送済み": 4 }
-=======
->>>>>>> 03fa423b8822b8caa702cd72d3c50cd9642c05d4
 end
