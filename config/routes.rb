@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'orders/new'
   get 'orders/index'
   get 'orders/show'
@@ -24,5 +25,10 @@ Rails.application.routes.draw do
   get 'customers/withdrew'
   get 'homes/top'
   get 'homes/about'
+=======
+  devise_for :customers
+  get '/' => 'homes#top'
+  get '/about' => 'homes#about'
+>>>>>>> 03fa423b8822b8caa702cd72d3c50cd9642c05d4
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
