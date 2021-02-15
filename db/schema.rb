@@ -10,22 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_02_15_092755) do
+ActiveRecord::Schema.define(version: 2021_02_15_102828) do
 
-  create_table "orders", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "delivery_zipcode"
-    t.integer "delivery_address"
-    t.string "delivery_name"
-    t.integer "shipping_price", default: 800
-    t.integer "billing_amount", default: 0
-    t.integer "payment_method"
-    t.integer "order_status"
+  create_table "admins", force: :cascade do |t|
+    t.string "email"
+    t.string "encrypted_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-=======
-ActiveRecord::Schema.define(version: 2021_02_15_091141) do
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "item_id"
+    t.integer "product_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -45,7 +45,56 @@ ActiveRecord::Schema.define(version: 2021_02_15_091141) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
->>>>>>> 03fa423b8822b8caa702cd72d3c50cd9642c05d4
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "zip_code"
+    t.string "address"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "name"
+    t.string "image_id"
+    t.text "caption"
+    t.integer "non_tax_price"
+    t.boolean "sale_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "oder_items", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "purchase_price"
+    t.integer "amount"
+    t.integer "production_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "customer_id"
+    t.string "delivery_zip_code"
+    t.string "delivery_address"
+    t.string "delivery_name"
+    t.integer "total_price"
+    t.integer "shipping_price"
+    t.integer "billing_amount"
+    t.integer "payment_method"
+    t.integer "order_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
