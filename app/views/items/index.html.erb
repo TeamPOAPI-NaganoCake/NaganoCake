@@ -1,2 +1,52 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h2 class="mb-5">商品一覧</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>商品ID</td>
+            <td>商品名</td>
+            <td>税抜き価格</td>
+            <td>ジャンル</td>
+            <td>ステータス</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= link_to item.name, item_path(item) %></td>
+              <td><%= item.non_tax_price %></td>
+              <td><%= item.genre_id %></td>
+              <td><%= item.sale_status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p><%= paginate @items, class: "justify-content-center" %></p>
+
+
+
+      <!--adminないので商品作成用。後々消します。-->
+      <div class="form-group">
+        <%= form_with model: @item, local: true do |f| %>
+          <%= f.label "name", :name %>
+          <%= f.text_field :name, class: "form-cotrol" %>
+          <%= f.label "image", :image %>
+          <%= f.attachment_field :image %>
+          <%= f.label "caption", :caption %>
+          <%= f.text_area :caption, class: "form-cotrol" %>
+          <%= f.label "non_tax_price", :non_tax_price %>
+          <%= f.text_field :non_tax_price, class: "form-cotrol" %>
+          <%= f.label "sale_status", :sale_status %>
+          <%= f.text_field :sale_status, class: "form-cotrol" %>
+          <%= f.submit "登録" %>
+        <% end %>
+      </div>
+
+      <!--ここまで。-->
+    </div>
+  </div>
+</div>
