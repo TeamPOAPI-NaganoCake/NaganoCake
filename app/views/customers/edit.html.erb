@@ -1,2 +1,36 @@
-<h1>Customers#edit</h1>
-<p>Find me in app/views/customers/edit.html.erb</p>
+<h4>会員情報編集</h4>
+<%= form_with model:@customer, local:true do |f| %>
+<table>
+  <tr>
+    <td>氏名</td>
+    <td><%= f.text_field :last_name, autofocus: true, placeholder:@customer.last_name %></td>
+    <td><%= f.text_field :first_name, autofocus: true, placeholder:@customer.first_name %></td>
+  </tr>
+  <tr>
+    <td>フリガナ</td>
+    <td><%= f.text_field :last_name_kana, autofocus: true, placeholder:@customer.last_name_kana %></td>
+    <td><%= f.text_field :first_name_kana, autofocus: true, placeholder:@customer.first_name_kana %></td>
+  </tr>
+  <tr>
+    <td>郵便番号</td>
+    <td><%= f.text_field :zip_code, autofocus: true, placeholder:@customer.zip_code %></td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td><%= f.text_field :address, autofocus: true, placeholder:@customer.address %></td>
+  </tr>
+  <tr>
+    <td>電話番号</td>
+    <td><%= f.text_field :phone_number, autofocus: true, placeholder:@customer.phone_number %></td>
+  </tr>
+  <tr>
+    <td>メールアドレス</td>
+    <td><%= f.email_field :email, autofocus: true, placeholder:@customer.email %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= f.submit "編集内容を保存" %></td>
+    <td><%= link_to "退会する", "# %></td>
+  </tr>
+</table>
+<% end %>

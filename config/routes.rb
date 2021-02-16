@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'customers/edit' => 'customers#edit'
+  devise_for :customers
   get 'orders/new'
   resources :orders, only: [:index, :show, :create]
   get 'orders/confirm'
@@ -10,12 +12,13 @@ Rails.application.routes.draw do
   # ↑↑
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
-  get 'customers/unsubscribe'
-  get 'customers/withdrew'
+  resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
+  get 'customers/unsubscribe/:id' => 'customers#unsubscribe',as: 'confirm_unsubscribe'
+  patch 'customers/:id/withdrew' => 'customers#cancel_flag', as: 'customer_withdrew'
   get 'homes/top'
   get 'homes/about'
-  devise_for :customers
   get '/' => 'homes#top'
   get '/about' => 'homes#about'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
