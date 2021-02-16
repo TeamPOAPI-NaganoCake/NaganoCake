@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.order
+    # @orders = current_customer.order
   end
 
   def show
@@ -54,13 +54,13 @@ class OrdersController < ApplicationController
     redirect_to orders_thanks
     @cart_items = current_cart
     @cart_items.each do |cart_item|
-      OrderProduct.create{
+      OrderProduct.create(
         # この辺は全部修正予定
-        product:  cart_item.product
-        order:    @order,
-        quantity: cart_item.quantity
+        product: cart_item.product,
+        order: @order,
+        quantity: cart_item.quantity,
         subprice: sub_price(cart_item)
-      }
+      )
     end
     @cart_items.destroy_all
   end
