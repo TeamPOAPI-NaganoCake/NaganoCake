@@ -17,7 +17,7 @@
             <tr>
               <td><%= item.id %></td>
               <td><%= link_to item.name, item_path(item) %></td>
-              <td><%= item.non_tax_price %></td>
+              <td><%= item.non_tax_price.to_s(:delimited) %></td>
               <td><%= item.genre_id %></td>
               <td><%= item.sale_status %></td>
             </tr>
