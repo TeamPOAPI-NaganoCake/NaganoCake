@@ -1,29 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 mx-auto">
-      <h2 class="mb-5">商品一覧</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <td>商品ID</td>
-            <td>商品名</td>
-            <td>税抜き価格</td>
-            <td>ジャンル</td>
-            <td>ステータス</td>
-          </tr>
-        </thead>
-        <tbody>
-          <% @items.each do |item| %>
-            <tr>
-              <td><%= item.id %></td>
-              <td><%= link_to item.name, item_path(item) %></td>
-              <td><%= item.non_tax_price.to_s(:delimited) %></td>
-              <td><%= item.genre_id %></td>
-              <td><%= item.sale_status %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h2 class="mb-5">商品一覧<span class="small"><%= "（全#{@item_all.count}件）" %></span></h2>
+      <div class= "d-flex flex-wrap">
+        <% @items.each do |item| %>
+          <div class="font-weight-bold px-2 mb-3">
+            <%= attachment_image_tag item, :image, :fill, 200, 125, fallback: "no-image.jpg", size: "200x125" %>
+            <p class="pt-3"><%= item.name %></p>
+            <p><%= "¥#{item.non_tax_price}" %></p>
+          </div>
+        <% end %>
+      </div>
+
 
       <p><%= paginate @items, class: "justify-content-center" %></p>
 

@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.page(params[:page]).per(10)
+    @item_all = Item.all
+    @items = Item.page(params[:page]).per(8)
 
 # 商品登録がしづらいので、作成。後々消します。
     @item = Item.new()
