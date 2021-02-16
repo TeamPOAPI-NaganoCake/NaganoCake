@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
       @order.delivery_zip_code = params[:order][:zip_code]
       @order.delivery_address  = params[:order][:address]
       @order.name              = params[:order][:name]
+      # ここの記述内容を確認中...
       # @ship = "1"
       # バリデーションのエラー出力部
       unless @order.valid? == true
@@ -46,6 +47,22 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = current_customer.orders.new(order_product)
+    @order.save
+    # どっちか
+    # redirect_to thanks_customers_orders_path
+    redirect_to orders_thanks
+    @cart_items = current_cart
+    @cart_items.each do |cart_item|
+      OrderProduct.create{
+        # この辺は全部修正予定
+        product:  cart_item.product
+        order:    @order,
+        quantity: cart_item.quantity
+        subprice: sub_price(cart_item)
+      }
+    end
+    @cart_items.destroy_all
   end
 
   def confirm
@@ -56,8 +73,10 @@ class OrdersController < ApplicationController
 
   private
   def order_params
+    params.require(:order).permit(:zip_code, :address, :name, :payment_method, :billing_amount)
   end
   def address_params
+    params.require(:order).permit(:zipbode, :address, :name)
   end
   def to_log
     redirect_to customers_cart_items_path if params[:id] == "log"
