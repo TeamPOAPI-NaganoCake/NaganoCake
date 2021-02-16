@@ -1,11 +1,48 @@
 class OrdersController < ApplicationController
+  include ApplicationHelper
+  before_action :to_log, only: [:show]
+  before_action :authenticate_customer!
   def new
+    @order = Order.new
+    @delivery_address = Delivery_address.where(customer: current_customer)
   end
 
   def index
+    @orders = current_customer.order
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_product = @order.order_product
+  end
+
+  def log
+    @cart_items = current_cart
+    @order = Order.new(
+      customer: current_customer,
+      payment_method: params[:order][:payment_method]
+    )
+    # 請求総額をここで入力
+    @order.billing_amount = billing(@order)
+    # 送り先＝登録住所の場合
+    if params[:order][:addresses] == "address"
+      @order.delivery_zip_code = current_customer.lean
+      @order.delivery_address  = current_customer.address
+      @order.name              = current_customer.last_name +
+                                 current_customer.first_name
+    # 送り先＝配送先住所の場合
+    elsif params[:order][:addresses] == "delivery_addresses"
+      delivery = Delivery_address.find(params[:order][:delivery_id])
+      @order.delivery_zip_code = params[:order][:zip_code]
+      @order.delivery_address  = params[:order][:address]
+      @order.name              = params[:order][:name]
+      # @ship = "1"
+      # バリデーションのエラー出力部
+      unless @order.valid? == true
+        @delivery_address = Delivery_address.where(customer: current_customer)
+        render :new
+      end
+    end
   end
 
   def create
@@ -15,5 +52,14 @@ class OrdersController < ApplicationController
   end
 
   def thanks
+  end
+
+  private
+  def order_params
+  end
+  def address_params
+  end
+  def to_log
+    redirect_to customers_cart_items_path if params[:id] == "log"
   end
 end
