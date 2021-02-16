@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
-  include ApplicationHelper
-  before_action :to_log, only: [:show]
+  # include ApplicationHelper
+  # before_action :to_log, only: [:show]
+  # ログイン済みユーザーのみアクセスを許可
   before_action :authenticate_customer!
+
   def new
     @order = Order.new
-    @delivery_address = Delivery_address.where(customer: current_customer)
+    # @delivery_address = Delivery_address.where(customer: current_customer)
   end
 
   def index
@@ -60,6 +62,7 @@ class OrdersController < ApplicationController
         order: @order,
         quantity: cart_item.quantity,
         subprice: sub_price(cart_item)
+        # ここまで
       )
     end
     @cart_items.destroy_all
