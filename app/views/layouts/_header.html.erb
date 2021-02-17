@@ -2,7 +2,7 @@
   <div class="container">
     <nav class=class="nav navbar-left">
        <% if admin_signed_in? %>
-        <h3><%= link_to "ながのCake", admins_homes_top_path %></h3>
+        <h3><%= link_to "ながのCake", admin_path %></h3>
         <% else %>
         <h3><%= link_to "ながのCake", root_path %></h3>
         <% end %>
