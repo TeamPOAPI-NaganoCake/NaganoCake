@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   get 'customers/edit' => 'customers#edit'
   devise_for :customers
   get 'orders/new'
-  resources :orders, only: [:index, :show, :create]
   get 'orders/confirm'
   get 'orders/thanks'
+  # resorcesは最後に記述しないと個別に規定したルーティングより優先されて処理されます。
+  resources :orders, only: [:index, :show, :create]
   resources :cart_items, only: [:index, :create, :update, :destroy]
   get 'cart_items/destroy_all'
   # admin未作成のため、商品登録用に「create」追加してます。後々削除

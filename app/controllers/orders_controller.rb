@@ -15,12 +15,12 @@ class OrdersController < ApplicationController
   end
 
   def index
-    # @orders = current_customer.order
+    @orders = Order.find(current_customer.id)
   end
 
   def show
-    @order = Order.find(params[:id])
-    @order_product = @order.order_product
+    # @order = Order.find(params[:id])
+    # @order_product = @order.order_product
   end
 
   def log
@@ -77,6 +77,7 @@ class OrdersController < ApplicationController
   end
 
   def thanks
+    
   end
 
   private

@@ -1,2 +1,58 @@
 <h1>Orders#confirm</h1>
 <p>Find me in app/views/orders/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4 offset-1">注文情報確認</div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th class="text-left">商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th class="text-left">送料</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th class="text-left">商品合計</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th class="text-left">請求金額</th>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+      <%= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success' %>
+  </div>
+</div>
