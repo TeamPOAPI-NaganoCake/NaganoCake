@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # ↑↑
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
-  resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
+  resources :deliveries, only: [:index, :create, :edit, :update, :destroy, :new]
   get 'customers/unsubscribe/:id' => 'customers#unsubscribe',as: 'confirm_unsubscribe'
   patch 'customers/withdrew/:id' => "customers#withdrew", as: 'customer_withdrew'
   get 'homes/top'

@@ -6,7 +6,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    # @delivery_address = Delivery_address.where(customer: current_customer)
+    @delivery = Delivery.new
+    @deliveries = Delivery.where(customer: current_customer)
+    # 自分の登録住所を呼び出し
+    @customers = Customer.find(current_customer.id)
+    # 登録配送先を呼び出し
+    # @deliveries = Delivery.find(params[:id])
   end
 
   def index
@@ -28,7 +33,7 @@ class OrdersController < ApplicationController
     @order.billing_amount = billing(@order)
     # 送り先＝登録住所の場合
     if params[:order][:addresses] == "address"
-      @order.delivery_zip_code = current_customer.lean
+      @order.delivery_zip_code = current_customer.zip_code  # テーブル定義書ではlean
       @order.delivery_address  = current_customer.address
       @order.name              = current_customer.last_name +
                                  current_customer.first_name
