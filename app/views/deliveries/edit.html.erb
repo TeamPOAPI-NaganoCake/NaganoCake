@@ -1,2 +1,24 @@
-<h1>Deliveries#edit</h1>
-<p>Find me in app/views/deliveries/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+   <div class="col-xs-4 col-xs-offset-4">
+    <h4>配送先編集</h4>
+      <%= form_with model:@delivery, local:true do |f| %>
+      <table>
+        <tr>
+          <td>郵便番号（ハイフンなし）</td>
+          <td><%= f.text_field :zip_code, autofocus: true %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= f.text_field :address, autofocus: true %></td>
+        </tr>
+        <tr>
+          <td>宛名</td>
+          <td><%= f.text_field :name, autofocus: true %></td>
+          <td><%= f.submit "編集内容を保存" %></td>
+        </tr>
+      </table>
+      <% end %>
+   </div>
+  </div>
+</div>
