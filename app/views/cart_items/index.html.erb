@@ -31,7 +31,12 @@
             <% end %>
           </td>
           <td class="align-middle"><%= (cart_item.item.tax_include_price * cart_item.product_amount).to_s(:delimited) %></td>
-          <td class="align-middle"><%= link_to "削除する", cart_item_path(cart_item), class: "btn btn-sm btn-danger", method: :delete %></td>
+          <td class="align-middle">
+            <%= form_with url: cart_item_path(cart_item), method: :delete, local: true do |f| %>
+              <%= f.submit "削除する", class: "btn btn-sm btn-danger" %>
+              <%= f.hidden_field :item_id, value: cart_item.item_id %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </tbody>
