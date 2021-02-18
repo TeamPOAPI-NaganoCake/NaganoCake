@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'orders/confirm'
   get 'orders/thanks'
   resources :cart_items, only: [:index, :create, :update, :destroy]
-  get 'cart_items/destroy_all'
+  delete 'cart_items/destroy_all' => "cart_items#destroy_all", as: "destroy_all_cart_items"
   # admin未作成のため、商品登録用に「create」追加してます。後々削除
   resources :items, only: [:index, :show, :create]
   # ↑↑

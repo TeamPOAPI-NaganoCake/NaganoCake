@@ -4,7 +4,7 @@
       <h3>ショッピングカート</h3>
     </div>
     <div class="col-md-6 text-right">
-      <%= link_to "カートを空にする", cart_items_destroy_all_path, class: "btn btn-sm btn-danger" %>
+      <%= link_to "カートを空にする", destroy_all_cart_items_path, class: "btn btn-sm btn-danger", method: :delete %>
     </div>
   </div>
   <div class="row">
@@ -24,14 +24,14 @@
           <td class="align-middle"><%= attachment_image_tag cart_item.item, :image, :fill, 80, 50, fallback: "no-image.jpg", size: "80x50" %><%= cart_item.item.name %></td>
           <td class="align-middle"><%= cart_item.item.tax_include_price.to_s(:delimited) %></td>
           <td class="align-middle">
-            <%= form_with model: @cart_item, local: true do |f| %>
+            <%= form_with url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
               <%= f.select :product_amount, options_for_select(@numbers, {selected: cart_item.product_amount.to_i}) %>
               <%= f.hidden_field :item_id, value: cart_item.item_id %>
               <%= f.submit "変更" %>
             <% end %>
           </td>
           <td class="align-middle"><%= (cart_item.item.tax_include_price * cart_item.product_amount).to_s(:delimited) %></td>
-          <td class="align-middle"><%= link_to "削除する", cart_item_path(cart_item), class: "btn btn-sm btn-danger" %></td>
+          <td class="align-middle"><%= link_to "削除する", cart_item_path(cart_item), class: "btn btn-sm btn-danger", method: :delete %></td>
         </tr>
       <% end %>
       </tbody>
