@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     # @order_product = @order.order_product
   end
 
+  # この辺の記述がいけてない
   def log
     @cart_items = current_cart
     @order = Order.new(
