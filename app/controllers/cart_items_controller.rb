@@ -19,6 +19,7 @@ class CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = 
     @cart_item.update(product_amount: params[:product_amount].to_i)
     redirect_to cart_items_path
   end
