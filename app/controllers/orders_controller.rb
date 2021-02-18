@@ -24,40 +24,40 @@ class OrdersController < ApplicationController
   end
 
   # この辺の記述がいけてない
-  def log
-    @cart_items = current_cart
-    @order = Order.new(
-      customer: current_customer,
-      payment_method: params[:order][:payment_method]
-    )
-    # 請求総額をここで入力
-    @order.billing_amount = billing(@order)
-    # 送り先＝登録住所の場合
-    if params[:order][:addresses] == "address"
-      @order.delivery_zip_code = current_customer.zip_code  # テーブル定義書ではlean
-      @order.delivery_address  = current_customer.address
-      @order.name              = current_customer.last_name +
-                                 current_customer.first_name
-    # 送り先＝配送先住所の場合
-    elsif params[:order][:addresses] == "delivery_addresses"
-      delivery = Delivery_address.find(params[:order][:delivery_id])
-      @order.delivery_zip_code = params[:order][:zip_code]
-      @order.delivery_address  = params[:order][:address]
-      @order.name              = params[:order][:name]
-      # ここの記述内容を確認中...
-      # @ship = "1"
-      # バリデーションのエラー出力部
-      unless @order.valid? == true
-        @delivery_address = Delivery_address.where(customer: current_customer)
-        render :new
-      end
-    end
-  end
+  # def log
+  #   @cart_items = current_cart
+  #   @order = Order.new(
+  #     customer: current_customer,
+  #     payment_method: params[:order][:payment_method]
+  #   )
+  #   # 請求総額をここで入力
+  #   @order.billing_amount = billing(@order)
+  #   # 送り先＝登録住所の場合
+  #   if params[:order][:addresses] == "address"
+  #     @order.delivery_zip_code = current_customer.zip_code  # テーブル定義書ではlean
+  #     @order.delivery_address  = current_customer.address
+  #     @order.name              = current_customer.last_name +
+  #                                current_customer.first_name
+  #   # 送り先＝配送先住所の場合
+  #   elsif params[:order][:addresses] == "delivery_addresses"
+  #     delivery = Delivery_address.find(params[:order][:delivery_id])
+  #     @order.delivery_zip_code = params[:order][:zip_code]
+  #     @order.delivery_address  = params[:order][:address]
+  #     @order.name              = params[:order][:name]
+  #     # ここの記述内容を確認中...
+  #     # @ship = "1"
+  #     # バリデーションのエラー出力部
+  #     unless @order.valid? == true
+  #       @delivery_address = Delivery_address.where(customer: current_customer)
+  #       render :new
+  #     end
+  #   end
+  # end
 
   def create
     @order = current_customer.orders.new(order_product)
     @order.save
-    # どっちか
+    # 61 62 どっちかにしたい
     # redirect_to thanks_customers_orders_path
     redirect_to orders_thanks
     @cart_items = current_cart

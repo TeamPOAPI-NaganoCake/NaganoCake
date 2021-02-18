@@ -1,19 +1,20 @@
 <h1>Orders#new</h1>
 <p>Find me in app/views/orders/new.html.erb</p>
 <div class="container mb-auto">
+  <%= form_with model: @order, local: true do  |f| %>
   <div class="row">
     <h3>支払い方法</h3>
   </div>
   <div class="row">
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios">クレジットカード</label>
+      <%= f.radio_button :payment_method, :"クレジットカード" %>
+      <%= f.label :payment_method, 'クレジットカード' %>
     </div>
   </div>
   <div class="row">
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios">銀行振込</label>
+      <%= f.radio_button :payment_method, :"銀行振込" %>
+      <%= f.label :payment_method, '銀行振込' %>
     </div>
   </div>
   <div class="row mt-5">
@@ -21,37 +22,23 @@
   </div>
   <div class="row mt-3">
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios">ご自身の住所</label>
-    </div>
-  </div>
-  <div class="row mt-1">
-    <div class="col-10">
-      〒<%= @customers.zip_code %> <%= @customers.address %><br />
-      <%= @customers.last_name %> <%= @customers.first_name %>
+      <%= f.radio_button :delivery_address, "delivery_address" %>
+      <%= f.label :delivery_address, 'ご自身のご住所' %><br />
+            〒<%= current_customer.zip_code %> <%= current_customer.address %><br />
+      <%= current_customer.last_name %> <%= current_customer.first_name %>
     </div>
   </div>
   <div class="row mt-3">
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios">登録済み住所から選択</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10">
-      <select class="custom-select">
-        <% @deliveries.each do |delivery| %>
-        <option value="<%= delivery.id %>">
-          〒 <%= delivery.zip_code %><%= delivery.address %><%= delivery.name %>
-        </option>
-        <% end %>
-      </select>
+      <%= f.radio_button :delivery_address, 'delivery' %>
+      <%= f.label :delivery_address, '登録済み住所から選択' %><br />
+      <%= f.collection_select(:delivery, @deliveries, :id, :view_destination) %>
     </div>
   </div>
   <div class="row mt-3">
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios">新しいお届け先</label>
+      <%= f.radio_button :delivery_address, "new_address" %>
+      <%= f.label :delivery_address, '新しいお届け先' %>
     </div>
   </div>
   <div class="row">
@@ -63,21 +50,16 @@
     <dic class="col-9 form-group">
       <%= form_with model: @delivery, local: true do |f| %>
       <div class="row">
-        <div class="col">
-          <%= f.text_field :zip_code, class: 'form-control', placeholder: '1000001' %>
-        </div>
+        <%= f.text_field :zip_code, placeholder: '1000001', class: 'form-control col-sm-3' %>
       </div>
-      <div class="row">
-        <div class="col">
-          <%= f.text_field :address, class: 'form-control', placeholder: '東京都千代田区千代田1-1-1' %>
-        </div>
+      <div class="row mt-1">
+        <%= f.text_field :address, placeholder: '東京都千代田区千代田1-1-1', class: 'form-control col-sm-5' %>
       </div>
-      <div class="row">
-        <div class="col">
-          <%= f.text_field :name, class: 'form-control', placeholder: '横浜太郎' %>
-        </div>
+      <div class="row mt-1">
+        <%= f.text_field :name, placeholder: '横浜太郎', class: 'form-control col-sm-3' %>
       </div>
       <% end %>
     </div>
   </div>
 </div>
+<% end %>
