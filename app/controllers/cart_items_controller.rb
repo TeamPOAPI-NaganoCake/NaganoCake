@@ -10,9 +10,10 @@ class CartItemsController < ApplicationController
   def create
     if @cart_item.blank?
       @cart_item = current_customer.cart_items.build(item_id: params[:item_id])
-      @cart_item.product_amount = params[:product_amount]
-    end
+      @cart_item.product_amount = params[:product_amount].to_i
+    else
       @cart_item.product_amount += params[:product_amount].to_i
+    end
       @cart_item.save
       redirect_to cart_items_path
   end
@@ -35,5 +36,5 @@ class CartItemsController < ApplicationController
   def setup_cart_item!
     @cart_item = current_customer.cart_items.find_by(item_id: params[:item_id])
   end
-
+  
 end
