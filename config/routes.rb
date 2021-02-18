@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   get 'orders/thanks'
   # resorcesは最後に記述しないと個別に規定したルーティングより優先されて処理されます。
   resources :orders, only: [:index, :show, :create]
+  delete 'cart_items/destroy_all' => "cart_items#destroy_all", as: "destroy_all"
   resources :cart_items, only: [:index, :create, :update, :destroy]
-  get 'cart_items/destroy_all'
   # admin未作成のため、商品登録用に「create」追加してます。後々削除
   resources :items, only: [:index, :show, :create]
   # ↑↑
