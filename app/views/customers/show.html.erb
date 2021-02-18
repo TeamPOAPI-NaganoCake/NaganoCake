@@ -1,43 +1,61 @@
-<h4>マイページ</h4>
-<table>
-  <tr>
-    <td>登録情報</td>
-    <td><%= link_to "編集する", edit_customer_path(@customer) %></td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <td>氏名</td>
-    <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
-  </tr>
-  <tr>
-    <td>カナ</td>
-    <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
-  </tr>
-  <tr>
-    <td>郵便番号</td>
-    <td><%= @customer.zip_code %></td>
-  </tr>
-  <tr>
-    <td>住所</td>
-    <td><%= @customer.address %></td>
-  </tr>
-  <tr>
-    <td>電話番号</td>
-    <td><%= @customer.phone_number %></td>
-  </tr>
-  <tr>
-    <td>メールアドレス</td>
-    <td><%= @customer.email %></td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <td>配送先</td>
-    <td><%= link_to "一覧を見る", "#" %></td>
-  </tr>
-  <tr>
-    <td>注文履歴</td>
-    <td><%= link_to "一覧を見る", "#" %></td>
-  </tr>
-</table>
+<div class="container">
+  <br>
+  <h4>マイページ</h4>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <table>
+        <tr>
+          <td><b>登録情報</b></td>
+          <td><%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-primary" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+  
+  <div class="row">
+    <div class="col-xs-6">
+      <table class="table table-bordered">
+        <tr>
+          <td class="active">氏名</td>
+          <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <td class="active">カナ</td>
+          <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td class="active">郵便番号</td>
+          <td><%= @customer.zip_code %></td>
+        </tr>
+        <tr>
+          <td class="active">住所</td>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td class="active">電話番号</td>
+          <td><%= @customer.phone_number %></td>
+        </tr>
+        <tr>
+          <td class="active">メールアドレス</td>
+          <td><%= @customer.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <table>
+    <tr>
+      <td><b>配送先</b></td>
+      <td><%= link_to "一覧を見る", deliveries_path, class: "btn btn-primary" %></td>
+    </tr>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><b>注文履歴</b></td>
+      <td><%= link_to "一覧を見る", "#", class: "btn btn-primary" %></td>
+    </tr>
+  </table>
+</div>

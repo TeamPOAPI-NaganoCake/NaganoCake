@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row">
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>商品名</th>
@@ -21,11 +21,16 @@
       <tbody>
       <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= attachment_image_tag cart_item.item, :image, :fill, 100, 75, fallback: "no-image.jpg" %><%= cart_item.name %></td>
-          <td><%= cart_item.item.tax_include_price %></td>
-          <td><%= cart_item.product_amount %></td>
-          <td><%= cart_item.item.tax_include_price.to_i * cart_item.product_amount %></td>
-          <td><%= link_to "削除する", cart_item_path(cart_item), class: "btn btn-sm btn-danger" %></td>
+          <td class="align-middle"><%= attachment_image_tag cart_item.item, :image, :fill, 80, 50, fallback: "no-image.jpg", size: "80x50" %><%= cart_item.item.name %></td>
+          <td class="align-middle"><%= cart_item.item.tax_include_price %></td>
+          <td class="align-middle">
+            <%= form_with model: cart_item, local: true do |f| %>
+              <%= f.select :product_amount, options_for_select(@numbers, {selected: cart_item.product_amount.to_i}) %>
+              <%= f.submit "変更" %>
+            <% end %>
+          </td>
+          <td class="align-middle"><%= (cart_item.item.tax_include_price.to_i * cart_item.product_amount).to_s(:delimited) %></td>
+          <td class="align-middle"><%= link_to "削除する", cart_item_path(cart_item), class: "btn btn-sm btn-danger" %></td>
         </tr>
       <% end %>
       </tbody>
@@ -37,7 +42,7 @@
       <%= link_to "買い物を続ける", items_path, class: "btn btn-sm btn-primary" %>
     </div>
     <div class="col-md-4">
-      <table class="table">
+      <table class="table table-bordered">
         <tr>
           <th>合計金額</th>
           <td></td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_102828) do
+ActiveRecord::Schema.define(version: 2021_02_16_051926) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_102828) do
     t.string "first_name_kana"
     t.string "zip_code"
     t.string "address"
-    t.boolean "cancel_flag"
+    t.boolean "cancel_flag", default: true
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

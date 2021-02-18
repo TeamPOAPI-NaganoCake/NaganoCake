@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   resources :customers, only: [:show, :edit, :update]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   get 'customers/unsubscribe/:id' => 'customers#unsubscribe',as: 'confirm_unsubscribe'
-  patch 'customers/:id/withdrew' => 'customers#cancel_flag', as: 'customer_withdrew'
+  patch 'customers/withdrew/:id' => "customers#withdrew", as: 'customer_withdrew'
   get 'homes/top'
   get 'homes/about'
-  get '/' => 'homes#top'
+  root 'homes#top'
   get '/about' => 'homes#about'
-
+  get 'customers/my_page' => 'customers#show', as: 'customers'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
