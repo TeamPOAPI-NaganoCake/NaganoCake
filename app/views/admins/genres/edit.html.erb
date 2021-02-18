@@ -1,2 +1,14 @@
-<h1>Admins::Genres#edit</h1>
-<p>Find me in app/views/admins/genres/edit.html.erb</p>
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <h2>ジャンル編集</h2>
+    </br>
+    <%= form_with model:@genre, url: admins_genre_path(@genre.id), method: :patch, local:true do |f| %>
+    <div>
+      ジャンル名<%= f.text_field :genre_name %>
+      <%= f.submit "変更を保存する", class: "btn btn-success" %>
+    </div>
+    <% end %>
+    </br>
+    <%= link_to "戻る", admins_genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
+  </div>
+</div>
