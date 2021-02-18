@@ -1,2 +1,55 @@
-<h1>Admins::Customers#edit</h1>
-<p>Find me in app/views/admins/customers/edit.html.erb</p>
+<div class="row">
+  <div class="col-xs-7 col-xs-offset-2">
+    <h4>
+      <span style="background-color:#C0C0C0"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</span>
+    </h4>  
+    <div class="field form-group col-sm-12">
+      <div>
+        <p>会員ID   <%= @customer.id %></</p>
+      </div>
+      <%= form_with(model: @customer, url:admins_customer_path, local: true, method: :patch) do |f| %>
+        <div class="field form-group col-sm-12">
+          <%= f.label :"名前", class: "col-sm-4 control-label" %>
+          <%= f.text_field :last_name, autofocus: true, class: "name col-sm-2" %>
+          <%= f.text_field :first_name, autofocus: true, class: "name col-sm-2" %>
+        </div>
+
+        <div class="field form-group col-sm-12">
+          <%= f.label :"フリガナ", class: "col-sm-4 control-label" %>
+          <%= f.text_field :last_name_kana, autofocus: true, class: "name col-sm-2" %>
+          <%= f.text_field :first_name_kana, autofocus: true, class: "name col-sm-2" %>
+        </div>
+        
+        <div class="field form-group col-sm-12">
+          <%= f.label :"郵便番号", class: "col-sm-4 control-label" %>
+          <%= f.text_field :zip_code, autofocus: true, class: "col-sm-4"  %>
+        </div>
+        
+        <div class="field form-group col-sm-12">
+          <%= f.label :"住所", class: "col-sm-4 control-label" %>
+          <%= f.text_field :address, autofocus: true, class: "col-sm-7" %>
+        </div>
+        
+        <div class="field form-group col-sm-12">
+          <%= f.label :"電話番号", class: "col-sm-4 control-label" %>
+          <%= f.telephone_field :phone_number, autofocus: true, class: "col-sm-4" %>
+        </div>
+
+         <div class="field form-group col-sm-12">
+          <%= f.label :"メールアドレス", class: "col-sm-4 control-label" %>
+          <%= f.email_field :email, autofocus: true, class: "col-sm-4" %>
+        </div>
+
+        <div class="field form-group col-sm-12">
+          <%= f.label :"会員ステータス", class: "col-sm-4 control-label" %>
+          <%= f.radio_button :cancel_flag, true %>有効
+          <%= f.radio_button :cancel_flag, false %>退会
+        </div>
+
+        <div class="actions col-xs-4 col-sm-8 control-label">
+            <%= f.submit "変更を保存する",class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
