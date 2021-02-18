@@ -7,10 +7,11 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @delivery = Delivery.new
+    @total_price = 
+    # 登録配送先を呼び出し
     @deliveries = Delivery.where(customer: current_customer)
     # 自分の登録住所を呼び出し
     @customers = Customer.find(current_customer.id)
-    # 登録配送先を呼び出し
     # @deliveries = Delivery.find(params[:id])
   end
 
@@ -55,26 +56,45 @@ class OrdersController < ApplicationController
   # end
 
   def create
-    @order = current_customer.orders.new(order_product)
-    @order.save
-    # 61 62 どっちかにしたい
-    # redirect_to thanks_customers_orders_path
-    redirect_to orders_thanks
-    @cart_items = current_cart
-    @cart_items.each do |cart_item|
-      OrderProduct.create(
-        # この辺は全部修正予定
-        product: cart_item.product,
-        order: @order,
-        quantity: cart_item.quantity,
-        subprice: sub_price(cart_item)
-        # ここまで
-      )
+    # @order = current_customer.orders.new(order_product)
+    # @order.save
+    # # 61 62 どっちかにしたい
+    # # redirect_to thanks_customers_orders_path
+    # redirect_to orders_thanks
+    # @cart_items = current_cart
+    # @cart_items.each do |cart_item|
+    #   OrderProduct.create(
+    #     # この辺は全部修正予定
+    #     product: cart_item.product,
+    #     order: @order,
+    #     quantity: cart_item.quantity,
+    #     subprice: sub_price(cart_item)
+    #     # ここまで
+    #   )
+    # end
+    # @cart_items.destroy_all
+    
+    @cart_items = current_customer
+    @order = Order.new(
+      customer: current_customer,
+      payment_method: params[:order][:payment_method]
+    )
+    # @order.total_price = billing(@order)
+    if params[:order][:delivery_address] == "customer_address"
+      @order.delivery_zip_code = current_customer.zip_code
+      @order.delivery_address = current_customer.address
+      @order.delivery_name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:delivery_address] == "delivery_address"
+      delivery = Delivery.find(params[:order][:delivery_id])
+      @order.delivery_zip_code = delivery.zip_code
+      @order.delivery_address = delivery.address
+      @order.name = delivery.name
     end
-    @cart_items.destroy_all
+    redirect_to orders_confirm_path
   end
 
   def confirm
+    @cart_items = current_customer.cart_items
   end
 
   def thanks

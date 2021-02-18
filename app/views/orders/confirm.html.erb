@@ -16,12 +16,14 @@
           </tr>
         </thead>
         <tbody>
+        <%= @cart_items.each do |cart| %>
         <tr>
           <th></th>
-          <th></th>
+          <th><%= cart.product_amount %></th>
           <th></th>
           <th></th>
         </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
