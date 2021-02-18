@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @delivery = Delivery.new
-    @total_price = 
     # 登録配送先を呼び出し
     @deliveries = Delivery.where(customer: current_customer)
     # 自分の登録住所を呼び出し
@@ -95,10 +94,11 @@ class OrdersController < ApplicationController
 
   def confirm
     @cart_items = current_customer.cart_items
+    @shipping_price = 800
+    @total_price = (@cart_items.sum{|x| x.item.non_tax_price * x.product_amount} * 1.1).floor
   end
 
   def thanks
-    
   end
 
   private

@@ -18,10 +18,10 @@
         <tbody>
         <%= @cart_items.each do |cart| %>
         <tr>
-          <th></th>
+          <th><%= attachment_image_tag cart.item, :image, :fill, 80, 50, fallback: "no-image.jpg", size: "80x50" %> <%= cart.item.name %></th>
+          <th><%= cart.item.tax_include_price.to_s(:delimited) %></th>
           <th><%= cart.product_amount %></th>
-          <th></th>
-          <th></th>
+          <th><%= (cart.item.tax_include_price * cart.product_amount).to_s(:delimited) %></th>
         </tr>
         <% end %>
         </tbody>
@@ -32,25 +32,17 @@
         <thead class="thead-light">
           <tr>
             <th class="text-left">送料</th>
-            <td></td>
+            <td><%= @shipping_price %></td>
           </tr>
           <tr>
             <th class="text-left">商品合計</th>
-            <td></td>
+            <td><%= @total_price %></td>
           </tr>
           <tr>
             <th class="text-left">請求金額</th>
-            <td></td>
+            <td><%= @total_price + @shipping_price %></td>
           </tr>
         </thead>
-        <tbody>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        </tbody>
       </table>
     </div>
   </div>
