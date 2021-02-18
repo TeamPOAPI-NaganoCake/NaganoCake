@@ -1,21 +1,62 @@
 <header class="navbar navbar-light bg-light">
   <div class="container">
     <nav class=class="nav navbar-left">
-      <a class="navbar-brand btn btn-light" href="/"><span>LOGO</span></a>
+       <% if admin_signed_in? %>
+        <h3><%= link_to "ながのCake", admins_homes_top_path %></h3>
+        <% else %>
+        <h3><%= link_to "ながのCake", root_path %></h3>
+        <% end %>
     </nav>
     <div>
       <ul class="nav navbar-right">
         <% if customer_signed_in? %>
-          <li>ようこそ、<%= current_customer.last_name %>さん！</li>
-          <li><%= link_to ' マイページ', customers_path, :style=>"color:black;", class:"btn btn-light" %></li>
-          <li><%= link_to ' 商品一覧',"#", :style=>"color:black;", class:"btn btn-light" %></li>
-          <li><%= link_to ' カート',"#", :style=>"color:black;", class:"btn btn-light" %></li>
-          <li><%= link_to ' ログアウト', destroy_customer_session_path, method: :delete, :style=>"color:black;", class:"btn btn-light" %></li>
+          <li>
+            <p>ようこそ、<%= current_customer.last_name %>さん！</p>
+          </li>
+          <li>
+            <%= link_to ' マイページ', customers_path, :style=>"color:black;", class:"btn btn-light" %>
+            </li>
+          <li>
+            <%= link_to ' 商品一覧',"#", :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to ' カート',"#", :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to ' ログアウト', destroy_customer_session_path, method: :delete, :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to '商品一覧', "#", :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to '会員一覧', "#", :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to '注文履歴一覧', "#", :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to 'ジャンル一覧', "#", :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, :style=>"color:black;", class:"btn btn-light" %>
+          </li>
         <% else %>
-          <li><%= link_to ' About',homes_about_path, :style=>"color:black;", class:"btn btn-light" %></li>
-          <li><%= link_to ' 商品一覧',"#", :style=>"color:black;", class:"btn btn-light" %></li>
-          <li><%= link_to ' 新規登録', new_customer_registration_path, :style=>"color:black;", class:"btn btn-light" %></li>
-          <li><%= link_to ' ログイン', new_customer_session_path, :style=>"color:black;", class:"btn btn-light" %></li>
+          <li>
+            <%= link_to ' About',homes_about_path, :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to ' 商品一覧',"#", :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to ' 新規登録', new_customer_registration_path, :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to ' ログイン', new_customer_session_path, :style=>"color:black;", class:"btn btn-light" %>
+          </li>
+          <li>
+            <%= link_to "管理者画面", new_admin_session_path, :style=>"color:black;", class:"btn btn-light"  %>
+           </li>
         <% end %>
       </ul>
     </div>
