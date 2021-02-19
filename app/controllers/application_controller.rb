@@ -3,6 +3,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   
+ 
+  
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana,
+                                                       :zip_code, :address, :phone_number])
+  end
+
   def after_sign_in_path_for(resource)
     if resource.is_a?(Admin)
       admins_homes_top_path
@@ -11,10 +20,4 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana,
-                                                       :zip_code, :address, :phone_number])
-  end
 end

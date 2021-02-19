@@ -1,25 +1,19 @@
 Rails.application.routes.draw do
   namespace :admins do
-    get 'orders/show'
-  end
-  namespace :admins do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admins do
-    get 'items/index'
-    get 'items/edit'
-    get 'items/new'
-    get 'items/show'
-  end
-  namespace :admins do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admins do
+    resources :customers, only: [:index, :edit, :show, :update]
+    
+    resources :items, only: [:new, :index, :create, :edit, :show, :update]
+    
+    resources :genres, only: [:index, :create, :edit, :update]
+   
+    resources :orders, only: [:show, :update] do
+      resources :order_items, only: [:update]
+    end
+    
     get 'homes/top'
   end
+  get '/admin', to: 'admin/homes#top'
+  
   devise_for :admins
   get 'customers/edit' => 'customers#edit'
   devise_for :customers
