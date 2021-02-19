@@ -1,7 +1,10 @@
 class CartItem < ApplicationRecord
   belongs_to :customer
   belongs_to :item
-  validates :product_amount, numericality: {greater_than: 0}
+  validates :product_amount, numericality: {
+    greater_than: 0,
+    less_than_or_equal_to: 100
+  }
 
 
 
