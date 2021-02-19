@@ -5,5 +5,6 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :caption, presence: true, length: {maximum: 100}
+  validates :genre_id, presence: true
   validates :non_tax_price, presence: true
 end

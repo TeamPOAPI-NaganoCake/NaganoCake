@@ -48,7 +48,11 @@
         </div>
         <div class="col-md-9">
           <p class="d-inline-block">
-            <%= @item.sale_status %>
+            <% if @item.sale_status == true %>
+              <span class="text-success font-weight-bold">販売中</span>
+            <% else %>
+              <span class="text-secondary font-weight-bold">販売停止</span>
+            <% end %>
           </p>
         </div>
       </div>
