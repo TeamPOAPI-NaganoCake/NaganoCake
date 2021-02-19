@@ -40,7 +40,7 @@
           </tr>
           <tr>
             <th class="text-left">請求金額</th>
-            <td><%= @total_price + @shipping_price %></td>
+            <td><%#= @total_price + @shipping_price %></td>
           </tr>
         </thead>
       </table>
@@ -48,7 +48,7 @@
   </div>
   <div class="row">
     <h4>支払い方法</h4>
-    <p><%= @order.payment_method %></p>
+    <p><%#= @order.payment_method %></p>
   </div>
   <div class="row">
       <%= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success' %>

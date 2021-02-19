@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   # get 'customers/edit' => 'customers#edit'
   # get 'orders/new'
   # get 'homes/top'
-  # get 'homes/about'
+  get 'homes/about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

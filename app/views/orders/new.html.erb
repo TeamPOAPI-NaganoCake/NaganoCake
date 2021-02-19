@@ -1,7 +1,5 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
 <div class="container mb-auto">
-  <%= form_with model: @order, local: true do  |f| %>
+  <%= form_with model: @order, url: orders_confirm_path, local: true do  |f| %>
   <div class="row">
     <h3>支払い方法</h3>
   </div>
@@ -43,27 +41,18 @@
   </div>
   <div class="row">
     <div class="col-3">
-       <p>郵便番号（ハイフンなし）</p>
-       <p>住所</p>
-       <p>宛名</p>
+      <p>郵便番号（ハイフンなし）</p>
+      <p>住所</p>
+      <p>宛名</p>
     </div>
-    <dic class="col-9 form-group">
-      <%#= form_with model: @delivery, local: true do |f| %>
-      <div class="row">
-        <%= f.text_field :zip_code, placeholder: '1000001', class: 'form-control col-sm-3' %>
-      </div>
-      <div class="row mt-1">
-        <%= f.text_field :address, placeholder: '東京都千代田区千代田1-1-1', class: 'form-control col-sm-5' %>
-      </div>
-      <div class="row mt-1">
-        <%= f.text_field :name, placeholder: '横浜太郎', class: 'form-control col-sm-3' %>
-      </div>
-      <%# end %>
+    <div class="col-9 form-group">
+      <%= f.text_field :zip_code, placeholder: '1000001', class: 'form-control col-sm-3' %>
+      <%= f.text_field :address, placeholder: '東京都千代田区千代田1-1-1', class: 'form-control col-sm-5' %>
+      <%= f.text_field :name, placeholder: '横浜太郎', class: 'form-control col-sm-3' %>
     </div>
   </div>
-  <div class="row mt-3 justify-content-center">
+  <div class="row justify-content-center">
     <%= f.submit '確認画面へ進む', class: 'btn btn-success' %>
-    <%= link_to "確認画面へ進む", orders_confirm_path, class: 'btn btn-success' %>
+    <% end %>
   </div>
-  <% end %>
 </div>
