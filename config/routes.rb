@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     get 'homes/top'
   end
-
   # ============================以下customer=======================================
-
   devise_for :customers
   get 'customers/edit' => 'customers#edit'
   get 'customers/my_page' => 'customers#show', as: 'customers'
