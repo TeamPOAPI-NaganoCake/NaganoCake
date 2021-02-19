@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'orders/confirm'
   get 'orders/thanks'
-  resources :orders, only: [:new, :index, :show, :create]
+  resources :orders
 
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
