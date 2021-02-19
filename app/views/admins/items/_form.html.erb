@@ -1,14 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 ml-auto my-4">
-      <h3 class="ml-10">
-        <% case controller.action_name %>
-        <% when "new" %>
-          商品新規登録
-        <% when "edit" %>
-          商品編集
-        <% end %>
-      </h3>
+      <h3 class="ml-10"><%= page_title %></h3>
     </div>
   </div>
   <div class="row mx-auto">
@@ -65,12 +58,7 @@
           </div>
         </div>
         <div class="text-center">
-          <% case controller.action_name %>
-        <% when "new" %>
-          <%= f.submit "新規登録", class: "btn btn-lg btn-success" %>
-        <% when "edit" %>
-          <%= f.submit "変更を保存", class: "btn btn-lg btn-success" %>
-        <% end %>
+          <%= f.submit btn_text, class: "btn btn-lg btn-success" %>
         </div>
       <% end %>
     </div>
