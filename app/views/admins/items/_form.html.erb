@@ -9,7 +9,7 @@
 
     </div>
     <div class="col-md-6">
-      <%= form_with model: [:admin, item], local: true do |f| %>
+      <%= form_with model: item, url: admins_items_path, local: true do |f| %>
         <div class="form-group">
           <div class="row">
             <%= f.label :image, "商品画像", class: "col-md-4" %>
@@ -33,8 +33,8 @@
 
         <div class="form-group">
           <div class="row">
-            <%= f.label :genre, "ジャンル", class: "col-md-4" %>
-            <%= f.select :genre_id, class: "col-md-8 form-cotrol d-block" %>
+            <%= f.label :genre_id, "ジャンル", class: "col-md-4" %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, class: "col-md-8 form-cotrol d-block" %>
           </div>
         </div>
 
