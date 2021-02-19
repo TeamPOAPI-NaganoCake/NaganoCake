@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   devise_for :customers
   get 'customers/edit' => 'customers#edit'
   get 'customers/my_page' => 'customers#show', as: 'customers'
+  get 'customers/unsubscribe/:id' => 'customers#unsubscribe',as: 'confirm_unsubscribe'
+  patch 'customers/withdrew/:id' => "customers#withdrew", as: 'customer_withdrew'
 
   delete 'cart_items/destroy_all' => "cart_items#destroy_all", as: "destroy_all"
   resources :cart_items, only: [:index, :create, :update, :destroy]
@@ -30,8 +32,6 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-  get 'customers/unsubscribe/:id' => 'customers#unsubscribe',as: 'confirm_unsubscribe'
-  patch 'customers/withdrew/:id' => "customers#withdrew", as: 'customer_withdrew'
 
 
   # =========================以下不要===========================
