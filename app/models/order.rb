@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   # 空欄のままではダメ
   validates :customer_id, :delivery_address, :delivery_name, :shipping_price, :billing_amount, :payment_method, presence: true
   # 郵便番号の桁数は7以外ダメ
-  validates :delivery_zipcode, length: {is: 7}, numericality: {only_integer: true }
+  validates :delivery_zip_code, length: {is: 7}, numericality: {only_integer: true }
   # 送料、請求額は数値のみ許可
   validates :shipping_price, :billing_amount, numericality: { only_integer: true }
 
