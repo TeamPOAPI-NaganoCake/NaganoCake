@@ -19,6 +19,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    # 不要かもしれない↓
+    @cart_item = CartItem.new()
   end
 
 # admin未作成のため、商品登録用。後々消します。
