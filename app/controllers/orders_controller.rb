@@ -6,12 +6,13 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @delivery = Delivery.new
+    # @delivery = Delivery.new
     # 登録配送先を呼び出し
     @deliveries = Delivery.where(customer: current_customer)
     # 自分の登録住所を呼び出し
-    @customers = Customer.find(current_customer.id)
+    # @customers = Customer.find(current_customer.id)
     # @deliveries = Delivery.find(params[:id])
+    @cart_items = current_customer
   end
 
   def index
@@ -96,6 +97,7 @@ class OrdersController < ApplicationController
     @cart_items = current_customer.cart_items
     @shipping_price = 800
     @total_price = (@cart_items.sum{|x| x.item.non_tax_price * x.product_amount} * 1.1).floor
+    binding.pry
   end
 
   def thanks
@@ -108,7 +110,7 @@ class OrdersController < ApplicationController
   def address_params
     params.require(:order).permit(:zipbode, :address, :name)
   end
-  def to_log
-    redirect_to customers_cart_items_path if params[:id] == "log"
-  end
+  # def confirm
+  #   redirect_to customers_cart_items_path if params[:id] == "log"
+  # end
 end

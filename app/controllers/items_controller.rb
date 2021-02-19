@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
 # admin未作成のため、商品登録用。後々消します。
   private
   def item_params
-    params.require(:item).permit(:name, :image, :caption, :non_tax_price, :sale_status)
+    params.require(:item).permit(:name, :caption, :non_tax_price, :sale_status)
   end
 # ここまで
 
