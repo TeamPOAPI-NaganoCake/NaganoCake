@@ -9,11 +9,11 @@ class ItemsController < ApplicationController
   end
 
 # 商品登録がしづらいので、作成。後々消します。
-  def create
-    item = Item.new(item_params)
-    item.save
-    redirect_back(fallback_location: :top)
-  end
+  # def create
+  #   item = Item.new(item_params)
+  #   item.save
+  #   redirect_back(fallback_location: :top)
+  # end
 # ここまで
 
 

@@ -4,15 +4,22 @@ Rails.application.routes.draw do
 
   devise_for :admins
   namespace :admins do
-    resources :orders, only: [:show]
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :items, only: [:index, :show, :new, :create, :edit, :update]
+    resources :customers, only: [:index, :edit, :show, :update]
+    
+    resources :items, only: [:new, :index, :create, :edit, :show, :update]
+    
     resources :genres, only: [:index, :create, :edit, :update]
+   
+    resources :orders, only: [:show, :update] do
+      resources :order_items, only: [:update]
+    end
+    
     get 'homes/top'
   end
-
-  # ============================以下customer=======================================
-
+  get '/admin', to: 'admin/homes#top'
+  
+  devise_for :admins
+  get 'customers/edit' => 'customers#edit'
   devise_for :customers
   get 'customers/edit' => 'customers#edit'
   get 'customers/my_page' => 'customers#show', as: 'customers'
