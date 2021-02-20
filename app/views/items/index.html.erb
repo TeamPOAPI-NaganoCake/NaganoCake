@@ -1,7 +1,9 @@
-<div class="container">
+
   <div class="row">
-    <div class="col-md-10 mx-auto">
-      <h2 class="mb-5">商品一覧<span class="small"><%= "（全#{@item_all.count}件）" %></span></h2>
+     <%= render 'genre_search', genres: @genres %>
+    <div class="col-md-9 mx-auto">
+
+      <h2 class="mb-5"><%= @info %>一覧<span class="small"><%= "（全#{@item_all}件）" %></span></h2>
       <div class= "d-flex flex-wrap">
         <% @items.each do |item| %>
           <div class="font-weight-bold px-2 mb-3">
@@ -18,25 +20,4 @@
       <p><%= paginate @items, class: "justify-content-center" %></p>
 
 
-
-      <!--adminないので商品作成用。後々消します。-->
-      <div class="form-group">
-        <%= form_with model: @item, local: true do |f| %>
-          <%= f.label "name", :name %>
-          <%= f.text_field :name, class: "form-cotrol" %>
-          <%= f.label "image", :image %>
-          <%= f.attachment_field :image %>
-          <%= f.label "caption", :caption %>
-          <%= f.text_area :caption, class: "form-cotrol" %>
-          <%= f.label "non_tax_price", :non_tax_price %>
-          <%= f.text_field :non_tax_price, class: "form-cotrol" %>
-          <%= f.label "sale_status", :sale_status %>
-          <%= f.text_field :sale_status, class: "form-cotrol" %>
-          <%= f.submit "登録" %>
-        <% end %>
-      </div>
-
-      <!--ここまで。-->
-    </div>
   </div>
-</div>
