@@ -57,7 +57,8 @@
     </p>
   </div>
   <div class="row">
-    <%= form_with model: @order, local: true do |f| %>
+    <%#= form_for @order do |f| %>
+    <%= form_with model: @order, url: thanks_orders_path, method: :post, local: true do |f| %>
     <%= f.submit '注文を確定する', class: 'btn btn-success' %>
     <%#= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success' %>
     <% end %>

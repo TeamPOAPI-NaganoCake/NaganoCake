@@ -24,10 +24,11 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :create]
 
   # get 'orders/confirm'
-  get 'orders/thanks'
-  resources :orders do
+  # get 'orders/thanks'
+  resources :orders, only: [:new, :create, :show, :index] do
     collection do
       post :confirm
+      post :thanks
     end
   end
 
