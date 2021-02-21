@@ -3,7 +3,7 @@ class Admins::CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update]
   
   def index
-    @customers = Customer.all
+    #@customers = Customer.all
     @customers = Customer.page(params[:page]).per(10)
   end
 

@@ -1,0 +1,25 @@
+<div class="row">
+  <h5 class="title"><span style="background-color:#C0C0C0">管理者ログイン</span></h5>
+</div> 
+<br/>
+
+<div class="row">
+  <div class="mx-auto">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <table class='table table-borderless'>
+        <tr>
+          <td><%= f.label :email, "メールアドレス" %></td>
+          <td><%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", size: "40" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password, "パスワード" %></td>
+          <td><%= f.password_field :password, size: "40" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "ログイン", class: 'btn btn-primary' %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

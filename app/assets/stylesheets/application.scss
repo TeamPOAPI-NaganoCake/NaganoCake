@@ -27,4 +27,29 @@
 	color: red;
 }
 
+.form{
+  margin-right: 50px;
+}
 
+.title{
+  margin-left: 50px;
+  margin-bottom: 40px;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+
+.pagination>.active>a {
+  background: #93c9ff;
+}
+
+.true{
+  color: green
+}
+
+.devise-p{
+  margin-left: 70px;
+}
