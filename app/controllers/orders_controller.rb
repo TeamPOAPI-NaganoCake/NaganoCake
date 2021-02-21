@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     @cart_items = current_customer.cart_items
     @order.customer_id = current_customer.id
     @order.payment_method = params[:order][:payment_method]
-    @order.order_status = 0
+    @order.order_status = "入金待ち"
     @order.total_price = (@cart_items.sum{|x| x.item.non_tax_price * x.product_amount} * 1.1).floor
     @order.shipping_price = 800
     @order.billing_amount = @order.total_price + @order.shipping_price
@@ -42,7 +42,6 @@ class OrdersController < ApplicationController
     # @order = current_customer.order.new(order_params)
     # どうにもcreateアクションにorderの中身が持ってこれない･･･
     @order = Order.new(order_params)
-    binding.pry
     @order.save
 
     # カートの商品を注文商品に移動する部分
@@ -61,7 +60,8 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.permit(
+    params.require(:order).permit(
+    # params.permit(
       :customer_id, :delivery_zip_code, :delivery_address, :delivery_name,
       :total_price, :shipping_price, :billing_amount, :payment_method, :order_status
     )

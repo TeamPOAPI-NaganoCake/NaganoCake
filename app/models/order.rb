@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :customer
-  has_many :order_products, dependent: :destroy
+  has_many :order_items, dependent: :destroy
 
   # # 空欄のままではダメ
   # validates :customer_id, :delivery_address, :delivery_name, :shipping_price, :billing_amount, :payment_method, presence: true
