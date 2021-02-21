@@ -27,3 +27,16 @@
     </table>
   </div>
 </div>
+
+<%= @order.each do |show| %>
+<div class="row">
+<%= show.id %>
+</div>
+<div class="row">
+<%= show.total_price %>
+</div>
+<div class="row">
+<%= show.created_at %>
+</div>
+
+<% end %>

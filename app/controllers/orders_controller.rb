@@ -3,18 +3,18 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    # @deliveries = Delivery.where(customer: current_customer)
+    @deliveries = Delivery.where(customer: current_customer)
   end
 
   def index
-  end
-
-  def show
     @order = Order.all
   end
 
+  def show
+  end
+
   def confirm
-    @order = Order.new(@order_params)
+    @order = Order.new(order_params)
     @cart_items = current_customer.cart_items
     @order.customer_id = current_customer.id
     @order.payment_method = params[:order][:payment_method]
@@ -36,23 +36,34 @@ class OrdersController < ApplicationController
       @order.delivery_address  = params[:order][:address]
       @order.delivery_name     = params[:order][:name]
     end
-    # @order = Order.find_by(customer_id: current_customer.id)
-    # binding.pry
-    # @order = Order.find()
   end
 
   def create
-    # @order = current_customer.order.new(@order_params)
+    # @order = current_customer.order.new(order_params)
     # どうにもcreateアクションにorderの中身が持ってこれない･･･
-    @order = Order.new(@order_params)
+    @order = Order.new(order_params)
     binding.pry
     @order.save
+
+    # カートの商品を注文商品に移動する部分
+    # 注文情報作成->カートを空っぽに->thanksへリダイレクト
+    # @cart_items = current_cart
+    # @cat_items.each do |cart_item|
+    #   OrderDetail.create(      )
+    # end
+    # ここまで（作成中）
+
     redirect_to orders_thanks_path
-    # @order.save
-    # binding.pry
-    # redirect_to orders_confirm_path
   end
 
   def thanks
+  end
+
+  private
+  def order_params
+    params.permit(
+      :customer_id, :delivery_zip_code, :delivery_address, :delivery_name,
+      :total_price, :shipping_price, :billing_amount, :payment_method, :order_status
+    )
   end
 end
