@@ -1,2 +1,76 @@
 <h1>Orders#show</h1>
 <p>Find me in app/views/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4>注文履歴詳細</h4>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <h5>注文情報</h5>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>注文日</th>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <td>
+              <%= @order.delivery_zip_code %><br />
+              <%= @order.delivery_address %><br />
+              <%= @order.delivery_name %>
+            </td>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <td><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td><%= @order.order_status %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-4 offset-1">
+      <h5>請求情報</h5>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>商品合計</th>
+            <td><%= @order.total_price %></td>
+          </tr>
+          <tr>
+            <th>配送料</th>
+            <td><%= @order.shipping_price %></td>
+          </tr>
+          <tr>
+            <th>ご請求額</th>
+            <td><%= @order.billing_amount %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <h5>注文内容</h5>
+    <table class="table">
+      <thead class="thead-light">
+          <tr>
+            <th>商品</th>
+            <th>単価（税込）</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
