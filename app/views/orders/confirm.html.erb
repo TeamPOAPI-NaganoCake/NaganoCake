@@ -38,7 +38,7 @@
           </tr>
           <tr>
             <th class="text-left">請求金額</th>
-            <td><%#= @total_price + @shipping_price %></td>
+            <td><%= @order.billing_amount %></td>
           </tr>
         </thead>
       </table>
@@ -50,11 +50,16 @@
   </div>
   <div class="row">
     <h4>お届け先</h4>
+  </div>
+  <div class="row">
     <p>
-      <%= @order.delivery_zip_code %>
+      〒<%= @order.delivery_zip_code %> <%= @order.delivery_address %> <%= @order.delivery_name %>
     </p>
   </div>
   <div class="row">
-      <%= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success' %>
+    <%= form_with model: @order, local: true do |f| %>
+    <%= f.submit '注文を確定する', class: 'btn btn-success' %>
+    <%#= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success' %>
+    <% end %>
   </div>
 </div>

@@ -23,9 +23,13 @@ Rails.application.routes.draw do
   # admin未作成のため、商品登録用に「create」追加してます。後々削除
   resources :items, only: [:index, :show, :create]
 
-  get 'orders/confirm'
+  # get 'orders/confirm'
   get 'orders/thanks'
-  resources :orders
+  resources :orders do
+    collection do
+      post :confirm
+    end
+  end
 
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
