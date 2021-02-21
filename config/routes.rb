@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
 
 
+<<<<<<< HEAD
   # =========================以下不要===========================
 
   # get 'orders/show'
@@ -61,5 +62,7 @@ Rails.application.routes.draw do
   # get 'homes/top'
   get 'homes/about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+=======
+>>>>>>> 4c9cb3ea6c3a0ade80da3c5fd11072a24cad7ba8
 
 end
