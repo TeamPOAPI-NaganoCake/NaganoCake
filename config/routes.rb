@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root 'homes#top'
   get '/about' => 'homes#about'
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
+  }
   namespace :admins do
     resources :orders, only: [:show]
     resources :customers, only: [:index, :show, :edit, :update]
