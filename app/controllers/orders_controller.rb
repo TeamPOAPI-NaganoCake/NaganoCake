@@ -7,7 +7,9 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.all
+    # @orders = Order.where(id: current_customer.id)
+    @orders = current_customer.orders
+    # @orders = Order.all
   end
 
   def show
@@ -15,6 +17,9 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    # @order = Order.new(
+    #   customer: current_customer,
+    # )
     @cart_items = current_customer.cart_items
     @order.customer_id = current_customer.id
     @order.payment_method = params[:order][:payment_method]
@@ -39,17 +44,21 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # @order = current_customer.order.new(order_params)
-    # どうにもcreateアクションにorderの中身が持ってこれない･･･
+    # @order = current_customer.orders.new(order_params)
     @order = Order.new(order_params)
     @order.save
 
     # カートの商品を注文商品に移動する部分
     # 注文情報作成->カートを空っぽに->thanksへリダイレクト
     @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      OrderItem.create
-    end
+    # @cart_items.each do |cart_item|
+    #   OrderItem.create(
+    #     item: cart_item.item,
+    #     order: @order,
+    #     amount: cart_item.product_amount
+    #     purchase_price: non_tax_price(cart_item)
+    #   )
+    # end
     @cart_items.destroy_all
     # ここまで（作成中）
 
