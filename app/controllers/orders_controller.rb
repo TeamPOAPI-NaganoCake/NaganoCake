@@ -46,10 +46,11 @@ class OrdersController < ApplicationController
 
     # カートの商品を注文商品に移動する部分
     # 注文情報作成->カートを空っぽに->thanksへリダイレクト
-    # @cart_items = current_cart
-    # @cat_items.each do |cart_item|
-    #   OrderDetail.create(      )
-    # end
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      OrderItem.create
+    end
+    @cart_items.destroy_all
     # ここまで（作成中）
 
     redirect_to orders_thanks_path
@@ -61,9 +62,9 @@ class OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(
-    # params.permit(
-      :customer_id, :delivery_zip_code, :delivery_address, :delivery_name,
-      :total_price, :shipping_price, :billing_amount, :payment_method, :order_status
+      :customer_id,    :delivery_zip_code, :delivery_address,
+      :delivery_name,  :total_price,       :shipping_price,
+      :billing_amount, :payment_method,    :order_status
     )
   end
 end
