@@ -1,12 +1,23 @@
 class ItemsController < ApplicationController
   def index
-    @item_all = Item.all
+    @genres = Genre.all
+
     @items = Item.page(params[:page]).per(8)
 
-# 商品登録がしづらいので、作成。後々消します。
-    @item = Item.new()
-# ここまで
+    if params[:genre_id]
+      # ジャンルIDが一致する商品を取得
+      @genre = Genre.find(params[:genre_id])
+      @items = @genre.items.page(params[:page]).per(8)
+      @info = "#{@genre.genre_name}"
+    else
+      # 全商品を取得
+      @items = Item.page(params[:page]).per(8)
+      @info = "商品"
+    end
+    @item_all = @items.total_count
   end
+
+
 
 # 商品登録がしづらいので、作成。後々消します。
   def create
@@ -18,6 +29,7 @@ class ItemsController < ApplicationController
 
 
   def show
+    @genres = Genre.all
     @item = Item.find(params[:id])
     # 不要かもしれない↓
     @cart_item = CartItem.new()
