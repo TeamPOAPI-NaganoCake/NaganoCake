@@ -53,6 +53,6 @@
 
     <div class="col-md-10 text-center">
         <%= link_to "編集する", edit_admins_customer_path(@customer), class: 'btn btn-success form' %>
-        <%= link_to "注文履歴一覧を見る", admins_homes_top_path,class: 'btn btn-primary ' %>
+        <%= link_to "注文履歴一覧を見る", admins_homes_top_path(order_sort: 0),class: 'btn btn-primary ' %>
     </div>
 
