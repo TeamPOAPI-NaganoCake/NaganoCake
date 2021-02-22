@@ -1,6 +1,11 @@
+<div class="flash danger">
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%> 
+</div> 
 <div class="row">
   <h5 class="title"><span style="background-color:#C0C0C0">ログイン</span></h5>
-</div> 
+</div>
 <div class="row">
   <p class="title"><span style="background-color:#C0C0C0">会員の⽅はこちらからログイン</span></p>
 </div>
@@ -8,6 +13,7 @@
 <div class="row">
   <div class="mx-auto">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @customer %>
     <table class='table table-borderless'>
       <tr>
         <td><%= f.label :email, "メールアドレス" %></td>
