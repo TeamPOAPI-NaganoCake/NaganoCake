@@ -1,6 +1,10 @@
 class Item < ApplicationRecord
   has_many :cart_items, dependent: :destroy
-  attachment :image
-  # ここまで
   belongs_to :genre
+  attachment :image
+
+  validates :name, presence: true, uniqueness: true
+  validates :caption, presence: true, length: {maximum: 100}
+  validates :genre_id, presence: true
+  validates :non_tax_price, presence: true
 end

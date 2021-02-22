@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
     @items = Item.page(params[:page]).per(8)
 
+
     if params[:genre_id]
       # ジャンルIDが一致する商品を取得
       @genre = Genre.find(params[:genre_id])
@@ -25,8 +26,6 @@ class ItemsController < ApplicationController
     item.save
     redirect_back(fallback_location: :top)
   end
-# ここまで
-
 
   def show
     @genres = Genre.all
@@ -34,12 +33,5 @@ class ItemsController < ApplicationController
     # 不要かもしれない↓
     @cart_item = CartItem.new()
   end
-
-# admin未作成のため、商品登録用。後々消します。
-  private
-  def item_params
-    params.require(:item).permit(:name, :caption, :non_tax_price, :sale_status)
-  end
-# ここまで
 
 end
