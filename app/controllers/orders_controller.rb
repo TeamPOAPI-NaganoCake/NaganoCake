@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
+    @oi = OrderItem.all
   end
 
   def show
@@ -47,13 +48,19 @@ class OrdersController < ApplicationController
     # カートの商品を注文商品に移動する部分
     # 注文情報作成->カートを空っぽに->thanksへリダイレクト
     # セッション機能を使って受け渡しをするっぽい？
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
-      OrderItem.create(
-        order_id: 1,
-        amount: cart_item.product_amount
-      )
+        @order_items = @order.order_items.new
+        @order_items.item_id = cart_item.item.id
+        @order_items.purchase_price = cart_item.item.non_tax_price
+        @order_items.amount = cart_item.product_amount
+        # @order_items.name = cart_item.item.name,
+        @order_items.save
     end
+    
+    binding.pry
+    
+    # どうやらOrderItemがちゃんと作られていないらしい
     # @cart_items.each do |cart_item|
     #   OrderItem.create(
     #     item: cart_item.item,
