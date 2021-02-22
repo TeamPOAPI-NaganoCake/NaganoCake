@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admins do
-    resources :orders, only: [:show]
+    # create仮作成
+    resources :orders, only: [:show, :update, :create]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, only: [:index, :show, :new, :create, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
   delete 'cart_items/destroy_all' => "cart_items#destroy_all", as: "destroy_all"
   resources :cart_items, only: [:index, :create, :update, :destroy]
 
-  # admin未作成のため、商品登録用に「create」追加してます。後々削除
   resources :items, only: [:index, :show, :create]
 
   # get 'orders/confirm'

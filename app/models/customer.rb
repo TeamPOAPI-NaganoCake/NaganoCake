@@ -5,8 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :deliveries, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
-
  with_options presence: true do
     validates :first_name
     validates :last_name
@@ -26,6 +26,5 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (self.cancel_flag == true)
   end
-         
-  has_many :cart_items, dependent: :destroy
+
 end
