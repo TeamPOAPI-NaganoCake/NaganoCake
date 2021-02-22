@@ -49,9 +49,6 @@ class OrdersController < ApplicationController
     # セッション機能を使って受け渡しをするっぽい？
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
-      
-      binding.pry
-      
       OrderItem.create(
         order_id: 1,
         amount: cart_item.product_amount
