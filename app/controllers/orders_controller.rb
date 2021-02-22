@@ -61,9 +61,6 @@ class OrdersController < ApplicationController
     #   )
     # end
     # 新しい配送先で注文された場合に保存する（作成中）
-    
-    binding.pry
-    
     if params[:order][:deliver] == "1"
       current_customer.delivery.create(delivery_params)
     end
