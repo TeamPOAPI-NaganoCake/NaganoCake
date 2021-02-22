@@ -8,6 +8,7 @@ class Delivery < ApplicationRecord
     validates :address
   end
 
+  # orderに郵便番号・住所・名前表示するのに使います
   def view_destination
     "#{self.zip_code} #{self.address} #{self.name}"
   end
