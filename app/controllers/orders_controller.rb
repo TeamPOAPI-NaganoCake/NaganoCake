@@ -8,11 +8,13 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
-    @oi = OrderItem.all
+    # @oi = OrderItem.all
   end
 
   def show
     @order = Order.find(params[:id])
+    # @orders = current_customer.orders
+    @order_items = @order.order_items
   end
 
   def confirm
@@ -57,9 +59,6 @@ class OrdersController < ApplicationController
         # @order_items.name = cart_item.item.name,
         @order_items.save
     end
-    
-    binding.pry
-    
     # どうやらOrderItemがちゃんと作られていないらしい
     # @cart_items.each do |cart_item|
     #   OrderItem.create(
