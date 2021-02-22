@@ -53,7 +53,7 @@
     </tr>
     <tr>
       <td><b  class="form">注文履歴</b></td>
-      <td><%= link_to "一覧を見る", "#", class: "btn btn-primary" %></td>
+      <td><%= link_to "一覧を見る", orders_path(current_customer.id), class: "btn btn-primary" %></td>
     </tr>
   </table>
 </div>
