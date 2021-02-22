@@ -64,12 +64,14 @@
           </tr>
       </thead>
       <tbody>
+      <% @order_items.each do |order_item| %>
         <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th><%= order_item.item.name %></th>
+          <th><%= order_item.item.tax_include_price.to_s(:delimited) %></th>
+          <th><%= order_item.amount %></th>
+          <th><%= order_item.purchase_price %></th>
         </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

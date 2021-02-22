@@ -1,6 +1,5 @@
 <div class="container mb-auto">
   <%= form_with model: @order, url: confirm_orders_path(@order), local: true do  |f| %>
-  <%#= form_for @order, url: confirm_orders_path(@order) do  |f| %>
   <div class="row">
     <h3>支払い方法</h3>
   </div>
@@ -23,8 +22,8 @@
     <div class="form-check">
       <%= f.radio_button :delivery_address, "customer_address", checked: true %>
       <%= f.label :delivery_address, 'ご自身のご住所' %><br />
-            〒<%= current_customer.zip_code %> <%= current_customer.address %><br />
-      <%= current_customer.last_name %> <%= current_customer.first_name %>
+        〒<%= current_customer.zip_code %> <%= current_customer.address %><br />
+          <%= current_customer.last_name %> <%= current_customer.first_name %>
     </div>
   </div>
   <div class="row mt-3">

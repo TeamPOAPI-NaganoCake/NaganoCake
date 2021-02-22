@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
 
   def confirm
@@ -36,39 +37,21 @@ class OrdersController < ApplicationController
       @order.delivery_zip_code = params[:order][:zip_code]
       @order.delivery_address  = params[:order][:address]
       @order.delivery_name     = params[:order][:name]
-      @deliver = "1"
     end
   end
 
   def create
     @order = current_customer.orders.new(order_params)
-    # @order = Order.new(order_params)
     @order.save
-    # カートの商品を注文商品に移動する部分
-    # 注文情報作成->カートを空っぽに->thanksへリダイレクト
-    # セッション機能を使って受け渡しをするっぽい？
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
-      OrderItem.create(
-        order_id: 1,
-        amount: cart_item.product_amount
-      )
-    end
-    # @cart_items.each do |cart_item|
-    #   OrderItem.create(
-    #     item: cart_item.item,
-    #     order: @order,
-    #     amount: cart_item.product_amount
-    #     purchase_price: non_tax_price(cart_item)
-    #   )
-    # end
-    # 新しい配送先で注文された場合に保存する（作成中）
-    if params[:order][:deliver] == "1"
-      current_customer.delivery.create(delivery_params)
+        @order_items = @order.order_items.new
+        @order_items.item_id = cart_item.item.id
+        @order_items.purchase_price = cart_item.item.non_tax_price
+        @order_items.amount = cart_item.product_amount
+        @order_items.save
     end
     @cart_items.destroy_all    # カートの中身を全削除
-    # ここまで（作成中）
-
     redirect_to orders_thanks_path
   end
 
