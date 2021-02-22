@@ -8,12 +8,10 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
-    # @oi = OrderItem.all
   end
 
   def show
     @order = Order.find(params[:id])
-    # @orders = current_customer.orders
     @order_items = @order.order_items
   end
 
@@ -45,36 +43,20 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
-    # @order = Order.new(order_params)
     @order.save
-    # カートの商品を注文商品に移動する部分
-    # 注文情報作成->カートを空っぽに->thanksへリダイレクト
-    # セッション機能を使って受け渡しをするっぽい？
     @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
         @order_items = @order.order_items.new
         @order_items.item_id = cart_item.item.id
         @order_items.purchase_price = cart_item.item.non_tax_price
         @order_items.amount = cart_item.product_amount
-        # @order_items.name = cart_item.item.name,
         @order_items.save
     end
-    # どうやらOrderItemがちゃんと作られていないらしい
-    # @cart_items.each do |cart_item|
-    #   OrderItem.create(
-    #     item: cart_item.item,
-    #     order: @order,
-    #     amount: cart_item.product_amount
-    #     purchase_price: non_tax_price(cart_item)
-    #   )
-    # end
     # 新しい配送先で注文された場合に保存する（作成中）
     if params[:order][:deliver] == "1"
       current_customer.delivery.create(delivery_params)
     end
     @cart_items.destroy_all    # カートの中身を全削除
-    # ここまで（作成中）
-
     redirect_to orders_thanks_path
   end
 
