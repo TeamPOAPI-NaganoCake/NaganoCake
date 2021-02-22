@@ -39,5 +39,44 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
+<<<<<<< HEAD
   
 end
+=======
+
+
+<<<<<<< HEAD
+  # =========================以下不要===========================
+
+  # get 'orders/show'
+  # namespace :admins do
+  #   get 'customers/index'
+  #   get 'customers/show'
+  #   get 'customers/edit'
+  # end
+  # namespace :admins do
+  #   get 'items/index'
+  #   get 'items/edit'
+  #   get 'items/new'
+  #   post 'items/create'
+  #   get 'items/show'
+  # end
+  # namespace :admins do
+  #   get 'genres/index'
+  #   get 'genres/edit'
+  # end
+  # namespace :admins do
+  #   get 'homes/top'
+  # end
+  # devise_for :admins
+
+  # get 'customers/edit' => 'customers#edit'
+  # get 'orders/new'
+  # get 'homes/top'
+  get 'homes/about'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+=======
+>>>>>>> 4c9cb3ea6c3a0ade80da3c5fd11072a24cad7ba8
+
+end
+>>>>>>> 54ccef33d126f68a81015f7d26664fc934606450
