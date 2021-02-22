@@ -2,12 +2,14 @@
 
 one:
   item_id: 1
+  order_id: 1
   purchase_price: 1
   amount: 1
   production_status: 1
 
 two:
   item_id: 1
+  order_id: 1
   purchase_price: 1
   amount: 1
   production_status: 1

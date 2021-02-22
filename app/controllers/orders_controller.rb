@@ -16,12 +16,12 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @cart_items = current_customer.cart_items                 # カートアイテム呼び出し
-    @order.customer_id = current_customer.id                  # customer.idを入れる
-    @order.payment_method = params[:order][:payment_method]   # 支配方法を入れる
-    @order.order_status = "入金待ち"                          # 決済ステータス設定
+    @cart_items = current_customer.cart_items                     # カートアイテム呼び出し
+    @order.customer_id = current_customer.id                      # customer.idを入れる
+    @order.payment_method = params[:order][:payment_method]       # 支配方法を入れる
+    @order.order_status = "入金待ち"                              # 決済ステータス設定
     @order.total_price = (@cart_items.sum{|x| x.item.non_tax_price * x.product_amount} * 1.1).floor # 購入金額
-    @order.shipping_price = 800                               # 送料
+    @order.shipping_price = 800                                   # 送料
     @order.billing_amount = @order.total_price + @order.shipping_price # 購入金額 + 送料
     if params[:order][:delivery_address] == "customer_address"    # customerの登録住所へ送付
       @order.delivery_zip_code = current_customer.zip_code
@@ -46,10 +46,17 @@ class OrdersController < ApplicationController
     @order.save
     # カートの商品を注文商品に移動する部分
     # 注文情報作成->カートを空っぽに->thanksへリダイレクト
+    # セッション機能を使って受け渡しをするっぽい？
     @cart_items = current_customer.cart_items
-    
-    binding.pry
-    
+    @cart_items.each do |cart_item|
+      
+      binding.pry
+      
+      OrderItem.create(
+        order_id: 1,
+        amount: cart_item.product_amount
+      )
+    end
     # @cart_items.each do |cart_item|
     #   OrderItem.create(
     #     item: cart_item.item,
