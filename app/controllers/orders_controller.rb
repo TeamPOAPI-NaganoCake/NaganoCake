@@ -7,9 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    # @orders = Order.where(id: current_customer.id)
     @orders = current_customer.orders
-    # @orders = Order.all
   end
 
   def show
@@ -18,9 +16,6 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    # @order = Order.new(
-    #   customer: current_customer,
-    # )
     @cart_items = current_customer.cart_items                 # カートアイテム呼び出し
     @order.customer_id = current_customer.id                  # customer.idを入れる
     @order.payment_method = params[:order][:payment_method]   # 支配方法を入れる
@@ -52,6 +47,9 @@ class OrdersController < ApplicationController
     # カートの商品を注文商品に移動する部分
     # 注文情報作成->カートを空っぽに->thanksへリダイレクト
     @cart_items = current_customer.cart_items
+    
+    binding.pry
+    
     # @cart_items.each do |cart_item|
     #   OrderItem.create(
     #     item: cart_item.item,
