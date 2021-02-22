@@ -63,10 +63,10 @@
             <tr>
               <td><%= order_item.item.name %></td>
               <td><%= order_item.purchase_price %></td>
-              <td><%= order_items.amount %></td>
-              <td><%= (order_items.purchase_price * order_items.amount).to_s(:delimited, delimiter: ',') %></td>
-              <%= form_with model:[:admins, @order_item], local: true do |f| %>
-                <td><%= f.select :production_status, OrderItem.production_status, class: "d-block" %></td>
+              <td><%= order_item.amount %></td>
+              <td><%= (order_item.purchase_price * order_item.amount).to_s(:delimited, delimiter: ',') %></td>
+              <%= form_with model: @order_item, local: true do |f| %>
+                <td><%= f.select :production_statuses, OrderItem.production_statuses, class: "d-block" %></td>
                 <td><%= f.submit "更新", class: "btn btn-success" %></td>
               <% end %>
             </tr>
