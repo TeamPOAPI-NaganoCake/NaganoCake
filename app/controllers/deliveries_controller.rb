@@ -4,13 +4,14 @@ class DeliveriesController < ApplicationController
 
   def index
     @delivery = Delivery.new
-    @deliveries = Delivery.where(customer_id: current_customer.id)
+    @deliveries = Delivery.where(customer_id: current_customer.id).page(params[:page]).per(3)
   end
 
   def create
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
     if @delivery.save
+      flash[:success] = '新しい配送先が追加されました！'
       redirect_to deliveries_path
     else
       @deliveries = Delivery.where(customer_id: current_customer.id)
@@ -28,11 +29,13 @@ class DeliveriesController < ApplicationController
 
   def update
     @delivery.update(delivery_params)
+    flash[:success] = '配送先情報が更新されました！'
     redirect_to deliveries_path
   end
 
   def destroy
     @delivery.destroy
+    flash[:danger] = '配送先を削除しました！'
     redirect_to deliveries_path
   end
 

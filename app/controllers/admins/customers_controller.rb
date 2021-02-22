@@ -3,7 +3,6 @@ class Admins::CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update]
   
   def index
-    #@customers = Customer.all
     @customers = Customer.page(params[:page]).per(10)
   end
 
@@ -15,6 +14,7 @@ class Admins::CustomersController < ApplicationController
   
   def update
     if @customer.update(customer_params)
+      
        redirect_to admins_customers_path
     else
       render "edit"

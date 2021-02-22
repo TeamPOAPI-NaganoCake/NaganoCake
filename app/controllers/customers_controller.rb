@@ -12,8 +12,10 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
+      flash[:success] = 'お客様情報が更新されました！'
       redirect_to customers_path
     else
+      flash[:danger] = 'お客様の情報を更新出来ませんでした。空欄の箇所はありませんか？'
       render "edit"
     end
   end
@@ -25,7 +27,9 @@ class CustomersController < ApplicationController
     customer = current_customer
     customer.update(cancel_flag: false)
     reset_session
-    redirect_to root_path
+    flash[:info] = 'ありがとうございました。またのご利用を心よりお待ちしております。'
+    redirect_to root_path 
+    
   end
   
   private
