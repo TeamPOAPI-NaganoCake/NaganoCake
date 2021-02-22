@@ -1,2 +1,46 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+<h3>注文履歴詳細</h3>
+<div>
+  <div class="row">
+    <div class="col-md-2">
+      <p>注文者</p>
+    </div>
+    <div class="col-md-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <p>注文日</p>
+    </div>
+    <div class="col-md-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <p>配送先</p>
+    </div>
+    <div class="col-md-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <p>支払方法</p>
+    </div>
+    <div class="col-md-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <p>注文ステータス</p>
+    </div>
+    <div class="col-md-10">
+      <%= form_with model: [:admins, @order], local: true do |f| %>
+        <%= f.select :payment_method, Order.payment_methods.keys.to_a %>
+        <%= f.submit "更新", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

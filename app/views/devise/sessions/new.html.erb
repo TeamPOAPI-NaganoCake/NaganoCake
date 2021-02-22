@@ -1,3 +1,8 @@
+<div class="flash danger">
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%> 
+</div> 
 <div class="row">
   <h5 class="title"><span style="background-color:#C0C0C0">ログイン</span></h5>
 </div>

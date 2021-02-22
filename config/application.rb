@@ -15,5 +15,12 @@ module Naganocake
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # バリデーションエラー時のレイアウトが崩れるのを防ぐための記述
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      html_tag
+    end
+    # 日本時間に変更↓
+    config.time_zone = 'Asia/Tokyo'
   end
 end
