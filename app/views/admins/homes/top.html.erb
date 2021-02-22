@@ -17,11 +17,10 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-              </td>
+              <td><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+              <td><%= order.customer.last_name + order.customer.first_name %></td>
+              <td><%= order.order_items.sum(:amount) %></td>
+              <td><%= order.order_status %></td>
             </tr>
           <% end %>
         </tbody>
@@ -29,6 +28,28 @@
 
       <p><%= paginate @orders, class: "justify-content-center" %></p>
 
+      <!--仮オーダー作成フォーム-->
+      <%= form_with model: [:admins, @order], local: true do |f| %>
+        <%= f.label :customer_id,"購入者ID" %>
+        <%= f.text_field :customer_id %>
+        <%= f.label :delivery_zip_code,"郵便番号" %>
+        <%= f.text_field :delivery_zip_code %>
+        <%= f.label :delivery_address,"住所" %>
+        <%= f.text_field :delivery_address %>
+        <%= f.label :delivery_name,"宛名" %>
+        <%= f.text_field :delivery_name %>
+        <%= f.label :total_price,"商品代金" %>
+        <%= f.text_field :total_price %>
+        <%= f.label :shipping_price,"送料" %>
+        <%= f.text_field :shipping_price %>
+        <%= f.label :billing_amount,"総額" %>
+        <%= f.text_field :billing_amount %>
+        <%= f.label :payment_method,"支払い方法" %>
+        <%= f.select :payment_method, Order.payment_methods.keys.to_a %>
+        <%= f.label :order_status,"注文ステータス" %>
+        <%= f.select :order_status, Order.order_statuses.keys.to_a %>
+        <%= f.submit %>
+      <% end %>
     </div>
   </div>
 </div>

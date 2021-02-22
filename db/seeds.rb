@@ -99,7 +99,7 @@ Item.create!(
     sale_status: [['販売中', true], ['販売停止', false]],
     image: open("./app/assets/images/no-image.jpg")
   )
-  
+
   9.times do |n|
     Customer.create!(
       email: "tanakataro#{n + 1}@gmail.com",
@@ -112,7 +112,7 @@ Item.create!(
       address: "東京都港区台場1-11-#{n + 1}",
       phone_number: "0901234567#{n + 1}"
     )
- 
+
 end
 
 

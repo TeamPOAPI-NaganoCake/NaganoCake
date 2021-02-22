@@ -20,6 +20,7 @@ module Naganocake
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       html_tag
     end
-    # ここまで
+    # 日本時間に変更↓
+    config.time_zone = 'Asia/Tokyo'
   end
 end
