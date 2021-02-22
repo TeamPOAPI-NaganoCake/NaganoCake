@@ -1,14 +1,12 @@
 <div class="row">
-  <div class="col-xs-6 col-xs-offset-3">
-    <h2>ジャンル編集</h2>
-    </br>
-    <%= form_with model:@genre, url: admins_genre_path(@genre.id), method: :patch, local:true do |f| %>
+   <h5 class="title"><span style="background-color:#C0C0C0">ジャンル編集</span></h5>
+</div>
+<div class="row">
+  <%= form_with model:@genre, url: admins_genre_path(@genre.id), method: :patch, local:true do |f| %>
     <div>
-      ジャンル名<%= f.text_field :genre_name %>
-      <%= f.submit "変更を保存する", class: "btn btn-success" %>
-    </div>
+      <%= f.label :"ジャンル名", class:"form" %>
+      <%= f.text_field :genre_name, class:"form" %>
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
     <% end %>
-    </br>
-    <%= link_to "戻る", admins_genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
   </div>
 </div>
