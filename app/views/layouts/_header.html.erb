@@ -33,7 +33,7 @@
             <%= link_to '会員一覧', admins_customers_path, :style=>"color:black;", class:"btn btn-light" %>
           </li>
           <li>
-            <%= link_to '注文履歴一覧', admins_homes_top_path, :style=>"color:black;", class:"btn btn-light" %>
+            <%= link_to '注文履歴一覧', admins_homes_top_path(order_sort: 0), :style=>"color:black;", class:"btn btn-light" %>
           </li>
           <li>
             <%= link_to 'ジャンル一覧', admins_genres_path, :style=>"color:black;", class:"btn btn-light" %>
