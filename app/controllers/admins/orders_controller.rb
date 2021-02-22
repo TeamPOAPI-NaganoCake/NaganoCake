@@ -1,6 +1,7 @@
 class Admins::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
+    @order_items = @order.order_items
     session[:orders] = Order.find(params[:id]).customer.orders
   end
 
