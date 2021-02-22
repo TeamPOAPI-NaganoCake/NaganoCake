@@ -15,26 +15,30 @@ class CartItemsController < ApplicationController
       @cart_item.product_amount += params[:product_amount].to_i
     end
     if @cart_item.save
+      flash[:success] = 'カートに商品が追加されました！'
       redirect_to cart_items_path
     else
       redirect_back(fallback_location: root_path)
-      flash[:notice] = "数量を選択してください"
+      flash[:danger] = "数量を選択してください"
     end
   end
 
   def update
     @cart_item.update(product_amount: params[:product_amount].to_i)
+    flash[:success] = "#{@cart_item.item.name}の数量を変更しました"
     redirect_to cart_items_path
   end
 
   def destroy
     @cart_item.destroy
+    flash[:danger] = "#{@cart_item.item.name}を削除しました"
     redirect_to cart_items_path
   end
 
   def destroy_all
     current_customer.cart_items.destroy_all
     redirect_to cart_items_path
+    flash[:info] = 'カートを空にしました。'
   end
 
   private
