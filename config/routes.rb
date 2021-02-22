@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root 'homes#top'
   get '/about' => 'homes#about'
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
+  }
   namespace :admins do
     # create仮作成
     resources :orders, only: [:show, :update, :create]
@@ -30,5 +34,5 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-
+  
 end
