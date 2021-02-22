@@ -37,7 +37,6 @@ class OrdersController < ApplicationController
       @order.delivery_zip_code = params[:order][:zip_code]
       @order.delivery_address  = params[:order][:address]
       @order.delivery_name     = params[:order][:name]
-      @deliver = "1"
     end
   end
 
@@ -51,10 +50,6 @@ class OrdersController < ApplicationController
         @order_items.purchase_price = cart_item.item.non_tax_price
         @order_items.amount = cart_item.product_amount
         @order_items.save
-    end
-    # 新しい配送先で注文された場合に保存する（作成中）
-    if params[:order][:deliver] == "1"
-      current_customer.delivery.create(delivery_params)
     end
     @cart_items.destroy_all    # カートの中身を全削除
     redirect_to orders_thanks_path
