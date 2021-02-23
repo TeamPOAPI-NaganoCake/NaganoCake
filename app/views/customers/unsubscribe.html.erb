@@ -12,6 +12,6 @@
   </p>
   <br>
   <%= link_to "退会しない", customer_path(current_customer.id), class: "btn btn-primary " %>
-  <%= link_to "退会する", customer_withdrew_path, method: :patch, class: "btn btn-danger " %>
+  <%= link_to "退会する", customer_withdrew_path, method: :patch, class: "btn btn-danger ", "data-confirm" => "本当に退会しますか？" %>
   
 </div>
