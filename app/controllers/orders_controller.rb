@@ -48,6 +48,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
+    # @delivery = Delivery.new(delivery_params)
     @order.save
     @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
@@ -73,7 +74,6 @@ class OrdersController < ApplicationController
     )
   end
   def delivery_params
-    # params.require(:order).permit(:delivery_zip_code, :delivery_address, :delivery_name)
     params.require(:order).permit(:zip_code, :address, :name)
   end
 end
