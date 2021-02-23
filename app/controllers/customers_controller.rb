@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
       flash[:success] = 'お客様情報が更新されました！'
       redirect_to customers_path
     else
-      flash[:danger] = 'お客様の情報を更新出来ませんでした。空欄の箇所はありませんか？'
+      flash[:danger] = 'お客様の情報を更新出来ませんでした。内容をご確認ください。'
       render "edit"
     end
   end

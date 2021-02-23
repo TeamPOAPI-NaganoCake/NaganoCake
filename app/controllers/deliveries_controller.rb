@@ -14,13 +14,13 @@ class DeliveriesController < ApplicationController
       flash[:success] = '新しい配送先が追加されました！'
       redirect_to deliveries_path
     else
-      @deliveries = Delivery.where(customer_id: current_customer.id)
+      @deliveries = Delivery.where(customer_id: current_customer.id).page(params[:page]).per(3)
       render action: :index
     end
   end
 
   def edit
-    if @delivery.customer.id = current_customer.id
+    if @delivery.customer_id == current_customer.id
       render "edit"
     else
       redirect_to deliveries_path

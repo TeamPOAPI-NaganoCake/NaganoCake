@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'search/search'
+  get '/search' => 'search#search'
   root 'homes#top'
   get '/about' => 'homes#about'
 
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
   get 'customers/my_page' => 'customers#show', as: 'customers'
   get 'customers/unsubscribe/:id' => 'customers#unsubscribe',as: 'confirm_unsubscribe'
   patch 'customers/withdrew/:id' => "customers#withdrew", as: 'customer_withdrew'
-
+  get 'deliveries/edit' => 'deliveries#edit'
   delete 'cart_items/destroy_all' => "cart_items#destroy_all", as: "destroy_all"
   resources :cart_items, only: [:index, :create, :update, :destroy]
 

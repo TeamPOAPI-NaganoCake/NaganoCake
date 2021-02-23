@@ -6,10 +6,13 @@
 
 <br/>
 
-<div class="row">
-  <table class='table table-borderless table-sm col-md-10 mx-auto'>
+<div class="row"> 
+  <div class="col-md-10 mx-auto">
+  <%= form_with(model: @customer, url:admins_customer_path, local: true, method: :patch) do |f| %>
+  <table class='table table-borderless table-sm'> 
+
     <tbody>
-      <%= form_with(model: @customer, url:admins_customer_path, local: true, method: :patch) do |f| %>
+     
         <tr>
           <th>
             <p>会員ID</p>
@@ -107,7 +110,9 @@
           <th><%= f.submit '変更を保存',class: "btn btn-success"%></th>
           <td></td>
         </tr>
-      <% end %>
+      
     </tbody>
   </table>
+  <% end %>
+  </div>
 </div>

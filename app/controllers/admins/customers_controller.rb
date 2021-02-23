@@ -14,7 +14,7 @@ class Admins::CustomersController < ApplicationController
   
   def update
     if @customer.update(customer_params)
-      
+      flash[:success] = "会員内容をを変更しました"
        redirect_to admins_customers_path
     else
       render "edit"
