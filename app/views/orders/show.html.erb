@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
-    <h4>注文履歴詳細</h4>
+  <h5 class="col-md-10 mx-auto">
+    <span style="background-color:#C0C0C0">注文履歴詳細</span>
+  </h5>
   </div>
   <div class="row">
     <div class="col-7">
@@ -14,7 +16,7 @@
           <tr>
             <th>配送先</th>
             <td>
-              <%= @order.delivery_zip_code %><br />
+              〒<%= @order.delivery_zip_code %><br />
               <%= @order.delivery_address %><br />
               <%= @order.delivery_name %>
             </td>
