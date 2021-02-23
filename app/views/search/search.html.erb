@@ -1,0 +1,85 @@
+<% if @model == "customer" %>
+<div class="row">
+  <div class="col-md-10 mx-auto">
+  <table class="table">
+    <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+       <tbody>
+        <% @datas.each do |datas| %>
+          <tr>
+            <td>
+              <%= datas.id %>
+            </td>
+            <td>
+              <%= link_to admins_customer_path(datas.id), class: "btn-link"  do %>
+                <i></i>
+                <%= datas.last_name %>
+                <%= datas.first_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= datas.email %>
+            </td>
+            <td>
+              <% if datas.cancel_flag == false %>
+                <i>退会</i>
+              <% else %>
+                <i class="true">有効</i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p><%= paginate @datas, class: "justify-content-center" %></p>
+  </div>
+</div>
+<% end %>
+
+<% if @model == "item" %>
+<div class="row">
+    <div class="col-md-10 mx-auto">
+      <div class="row">
+        <h2 class="col-md-10 mb-5">商品一覧</h2>
+        <div class="col-md-2"><%= link_to " + ", new_admins_item_path, class: "btn btn-lg btn-secondary rounded-circle " %></div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>商品ID</td>
+            <td>商品名</td>
+            <td>税抜き価格</td>
+            <td>ジャンル</td>
+            <td>ステータス</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @datas.each do |datas| %>
+            <tr>
+              <td><%= datas.id %></td>
+              <td><%= link_to datas.name, admins_item_path(datas.id) %></td>
+              <td><%= datas.non_tax_price.to_s(:delimited) %></td>
+              <td><%= datas.genre.genre_name %></td>
+              <td>
+                <% if datas.sale_status == true %>
+                  <span class="text-success font-weight-bold">販売中</span>
+                <% else %>
+                  <span class="text-secondary font-weight-bold">販売停止</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p><%= paginate @datas, class: "justify-content-center" %></p>
+
+    </div>
+  </div>
+<% end %>
