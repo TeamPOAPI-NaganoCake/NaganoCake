@@ -34,9 +34,15 @@ class OrdersController < ApplicationController
       @order.delivery_address  = delivery.address
       @order.delivery_name     = delivery.name
     elsif params[:order][:delivery_address] == "new_address"      # 新しい住所へ送付
+      @delivery = Delivery.new
       @order.delivery_zip_code = params[:order][:zip_code]
       @order.delivery_address  = params[:order][:address]
       @order.delivery_name     = params[:order][:name]
+      @delivery.customer_id = current_customer.id
+      @delivery.zip_code = @order.delivery_zip_code
+      @delivery.address = @order.delivery_address
+      @delivery.name = @order.delivery_name
+      @delivery.save
     end
   end
 
@@ -67,6 +73,7 @@ class OrdersController < ApplicationController
     )
   end
   def delivery_params
-    params.require(:order).permit(:delivery_zip_code, :delivery_address, :delivery_name)
+    # params.require(:order).permit(:delivery_zip_code, :delivery_address, :delivery_name)
+    params.require(:order).permit(:zip_code, :address, :name)
   end
 end
