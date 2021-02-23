@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admins do
-    # create仮作成
-    resources :orders, only: [:show, :update, :create]
+    resources :orders, only: [:show, :update]
+    resources :order_items, only: [:update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, only: [:index, :show, :new, :create, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -39,6 +39,6 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :customers, only: [:show, :edit, :update]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-  
+
 end
 

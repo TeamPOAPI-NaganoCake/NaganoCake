@@ -5,7 +5,7 @@
       <p>購入者</p>
     </div>
     <div class="col-md-10">
-      <%= link_to "#{@order.customer.last_name} #{@order.customer.first_name}", admins_customer_path(@order) %>
+      <%= link_to "#{@order.customer.last_name} #{@order.customer.first_name}", admins_customer_path(@order.customer) %>
     </div>
   </div>
   <div class="row">
@@ -38,8 +38,8 @@
       <p>注文ステータス</p>
     </div>
     <div class="col-md-10">
-      <%= form_with model: [:admins, @order], local: true do |f| %>
-        <%= f.select :order_status, Order.order_statuses.keys.to_a %>
+      <%= form_with model:[:admins, @order], method: :patch, local: true do |f| %>
+        <%= f.select :order_status, options_for_select(Order.order_statuses, {selected: @order.order_status}) %>
         <%= f.submit "更新", class: "btn btn-sm btn-success" %>
       <% end %>
     </div>
@@ -65,8 +65,8 @@
               <td><%= order_item.purchase_price %></td>
               <td><%= order_item.amount %></td>
               <td><%= (order_item.purchase_price * order_item.amount).to_s(:delimited, delimiter: ',') %></td>
-              <%= form_with model: @order_item, local: true do |f| %>
-                <td><%= f.select :production_statuses, OrderItem.production_statuses, class: "d-block" %></td>
+              <%= form_with url: admins_order_item_path(order_item), method: :patch, local: true do |f| %>
+                <td><%= f.select :production_status, options_for_select(OrderItem.production_statuses, {selected: order_item.production_status}), class: "d-block" %></td>
                 <td><%= f.submit "更新", class: "btn btn-success" %></td>
               <% end %>
             </tr>

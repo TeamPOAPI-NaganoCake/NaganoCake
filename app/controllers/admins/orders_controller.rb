@@ -6,9 +6,12 @@ class Admins::OrdersController < ApplicationController
   end
 
   def update
+    order = Order.find(params[:id])
+    # binding.pry
+    order.update(order_status: params[:order_status].to_i)
+    redirect_back(fallback_location: root_path)
   end
 
-# 仮
   def create
     @order = Order.new(order_params)
     @order.save
