@@ -3,8 +3,8 @@ ja:
     errors:
       messages:
         not_saved:
-          one: "エラーが発生したため新規登録が出来ませんでした。:"
-          other: "%{count} 件のエラーが発生したため新規登録が出来ませんでした。:"
+          one: "エラーが発生したため新規登録が出来ませんでした。"
+          other: "%{count} 件のエラーが発生したため新規登録が出来ませんでした。"
       models:
         customer:
           attributes:
@@ -74,4 +74,7 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
-
+          attributes:
+            admin:
+              email: "メールアドレス"
+              

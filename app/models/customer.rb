@@ -26,5 +26,6 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (self.cancel_flag == true)
   end
+  
 
 end
