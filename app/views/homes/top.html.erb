@@ -1,22 +1,24 @@
 <div class="flash info">
+  <% unless flash[:info] %>
       <%- flash.each do |name, msg| -%>
     <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  <%- end -%> 
+    <%- end -%> 
+ <% end %>
 </div> 
  
 <div class="row">
   <div class="col-md-2">
    <%= render 'items/genre_search', genres: @genres %>
   </div>
-  <div class="col-md-9 mx-auto">
-  <div class="card card-body p-5 mb-5">
+  <div class="col-md-9 mx-auto image">
+    <div class="card card-body p-5 mb-5">
         ようこそ、NaganoCakeへ！<br>
         このサイトは、ケーキ販売のＥＣサイトになります。<br>
         会員でない方も商品の閲覧はできますが、<br>
         購入には会員登録が必要になります。<br>
-  </div>
-  <h3 class="font-weight-bold mb-4">新着商品</h3>
-  <div class="row">
+    </div>
+    <h3 class="font-weight-bold mb-4">新着商品</h3>
+    <div class="row">
     <% @items.each do |item| %>
       <div class="col-md-3 mb-4">
         <div class="card h-100">
@@ -24,7 +26,7 @@
           <div>
             <%= attachment_image_tag item, :image,　format: 'jpeg', fallback: "no-image.jpg", size: "100%", class: "card-img-top" %>
           </div>
-            <h5 class="card-title"><%= item.name %></h5>
+            <h6 class="card-title"><%= item.name %></h6>
             <p class="card-text">
             <% if item.sale_status == true %>
               ¥<%= item.non_tax_price %>

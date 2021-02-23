@@ -23,6 +23,7 @@
   box-sizing: border-box;
 }
 
+
 #error_explanation {
 	color: red;
 }
@@ -46,6 +47,10 @@
   background: #93c9ff;
 }
 
+.pagination {
+  justify-content: center;
+}
+
 .true{
   color: green
 }
@@ -67,3 +72,10 @@
   color: blue;
 }
 
+.search-form{
+  text-align: right;
+}
+
+.nav-link{
+  text-align: right;
+}
