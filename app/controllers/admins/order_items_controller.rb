@@ -1,7 +1,10 @@
 class Admins::OrderItemsController < ApplicationController
   def update
     order_item = OrderItem.find(params[:id])
-    order_item.update(production_status: params[:production_status].to_i)
+    order_item.update(order_item_params)
+    if order_item.order.order_items.count == order_item.order.order_items.where(production_status: "制作完了").count
+      order_item.order.update(order_status: "発送準備中")
+    end
     redirect_back(fallback_location: root_path)
   end
 
