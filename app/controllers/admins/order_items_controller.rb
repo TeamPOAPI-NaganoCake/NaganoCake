@@ -1,7 +1,7 @@
 class Admins::OrderItemsController < ApplicationController
   def update
     order_item = OrderItem.find(params[:id])
-    order_item.update(production_status: params[:production_status].to_i)
+    order_item.update(order_item_params)
     redirect_back(fallback_location: root_path)
   end
 
