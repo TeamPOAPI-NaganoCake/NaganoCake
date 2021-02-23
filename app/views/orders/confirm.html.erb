@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <table class="table">
+      <table class="table table-bordered">
         <thead class="thead-light">
           <tr>
             <th class="text-left">商品名</th>
@@ -17,16 +17,16 @@
         <% @cart_items.each do |cart| %>
         <tr>
           <th><%= attachment_image_tag cart.item, :image, :fill, 80, 50, fallback: "no-image.jpg", size: "80x50" %> <%= cart.item.name %></th>
-          <th><%= cart.item.tax_include_price.to_s(:delimited) %></th>
-          <th><%= cart.product_amount %></th>
-          <th><%= (cart.item.tax_include_price * cart.product_amount).to_s(:delimited) %></th>
+          <th class="align-middle"><%= cart.item.tax_include_price.to_s(:delimited) %></th>
+          <th class="align-middle"><%= cart.product_amount %></th>
+          <th class="align-middle"><%= (cart.item.tax_include_price * cart.product_amount).to_s(:delimited) %></th>
         </tr>
         <% end %>
         </tbody>
       </table>
     </div>
     <div class="col-4">
-      <table class="table">
+      <table class="table table-bordered">
         <thead class="thead-light">
           <tr>
             <th class="text-left">送料</th>
@@ -45,20 +45,22 @@
     </div>
   </div>
   <div class="row">
-    <h4>支払い方法</h4>
+    <div class="col-2">
+      <h5>支払い方法</h5>
+    </div>
+    <div class="col-6">
+      <p class="align-bottom"><%= @order.payment_method %></p>
+    </div>
   </div>
   <div class="row">
-    <p><%= @order.payment_method %></p>
+    <div class="col-2">
+      <h5>お届け先</h5>
+    </div>
+    <div class="col-6">
+      <p class="align-bottom">〒<%= @order.delivery_zip_code %> <%= @order.delivery_address %> <%= @order.delivery_name %></p>
+    </div>
   </div>
-  <div class="row">
-    <h4>お届け先</h4>
-  </div>
-  <div class="row">
-    <p>
-      〒<%= @order.delivery_zip_code %> <%= @order.delivery_address %> <%= @order.delivery_name %>
-    </p>
-  </div>
-  <div class="row">
+  <div class="row justify-content-center">
     <%= form_with model: @order, local: true do |f| %>
       <%= f.hidden_field :customer_id %>
       <%= f.hidden_field :delivery_zip_code %>

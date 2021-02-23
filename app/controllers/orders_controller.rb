@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.page(params[:page]).per(5)
   end
 
   def show
@@ -52,11 +52,11 @@ class OrdersController < ApplicationController
     @order.save
     @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
-        @order_items = @order.order_items.new
-        @order_items.item_id = cart_item.item.id
-        @order_items.purchase_price = cart_item.item.non_tax_price
-        @order_items.amount = cart_item.product_amount
-        @order_items.save
+      @order_items = @order.order_items.new
+      @order_items.item_id = cart_item.item.id
+      @order_items.purchase_price = cart_item.item.non_tax_price
+      @order_items.amount = cart_item.product_amount
+      @order_items.save
     end
     @cart_items.destroy_all    # カートの中身を全削除
     redirect_to orders_thanks_path
