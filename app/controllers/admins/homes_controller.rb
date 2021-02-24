@@ -1,4 +1,6 @@
 class Admins::HomesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def top
     # 前ページのデータを引くための記述
     path = Rails.application.routes.recognize_path(request.referer)

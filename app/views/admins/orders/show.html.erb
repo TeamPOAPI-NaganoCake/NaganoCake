@@ -1,8 +1,8 @@
 <div class="container">
-  <h3>注文履歴詳細</h3>
+  <h4 class="font-weight-bold">注文履歴詳細</h4>
   <div class="row">
     <div class="col-md-2">
-      <p>購入者</p>
+      <p class="font-weight-bold">購入者</p>
     </div>
     <div class="col-md-10">
       <%= link_to "#{@order.customer.last_name} #{@order.customer.first_name}", admins_customer_path(@order.customer), class: "text-secondary" %>
@@ -10,7 +10,7 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <p>注文日</p>
+      <p class="font-weight-bold">注文日</p>
     </div>
     <div class="col-md-10 ">
       <p><%= @order.created_at.strftime("%Y/%m/%d") %></p>
@@ -18,7 +18,7 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <p>配送先</p>
+      <p class="font-weight-bold">配送先</p>
     </div>
     <div class="col-md-10">
       <%= "〒 #{@order.delivery_zip_code.to_s.insert(3,"-")} #{@order.delivery_address}" %>
@@ -27,7 +27,7 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <p>支払方法</p>
+      <p class="font-weight-bold">支払方法</p>
     </div>
     <div class="col-md-10">
       <p><%= @order.payment_method %></p>
@@ -35,7 +35,7 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <p>注文ステータス</p>
+      <p class="font-weight-bold">注文ステータス</p>
     </div>
     <div class="col-md-10">
       <%= form_with model:[:admins, @order], local: true do |f| %>
@@ -47,7 +47,7 @@
 
   <div class="row mt-3">
     <div class="col-md-8">
-      <table class="table table-bordered shadow">
+      <table bgcolor="#FFF" class="table table-bordered shadow">
         <thead class="bg-secondary text-light">
           <tr>
             <th>商品名</th>
