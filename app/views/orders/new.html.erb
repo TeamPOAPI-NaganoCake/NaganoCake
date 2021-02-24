@@ -25,11 +25,13 @@
   〒<%= current_customer.zip_code %> <%= current_customer.address %><br />
     <%= current_customer.last_name %> <%= current_customer.first_name %>
   </div>
+  <% if @deliveries != [] %>
   <div class="row mt-3 form-check">
     <%= f.radio_button :delivery_address, 'delivery_address' %>
     <%= f.label :delivery_address, '登録済み住所から選択' %><br />
     <%= f.collection_select(:delivery, @deliveries, :id, :view_destination) %>
   </div>
+  <% end %>
   <div class="row mt-3 form-check">
     <%= f.radio_button :delivery_address, "new_address" %>
     <%= f.label :delivery_address, '新しいお届け先' %>
