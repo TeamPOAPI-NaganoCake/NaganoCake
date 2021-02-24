@@ -1,6 +1,6 @@
 class DeliveriesController < ApplicationController
   before_action :set_delivery, only:[:edit, :update, :destroy]
-
+  before_action :authenticate_customer!
 
   def index
     @delivery = Delivery.new

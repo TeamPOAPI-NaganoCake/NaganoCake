@@ -1,10 +1,10 @@
-<div class="container">
   <div class="row">
-  <h2 class="col-md-10 mx-auto">注文履歴一覧</h2>
+    <h4 class="col-md-12 title">注文履歴一覧</h4>
   </div>
-  <div class="row mt-3">
-    <table bgcolor="#FFF" class="table table-bordered">
-      <thead class="thead-light">
+  <div class="row">
+    <div class="col-md-12">
+    <table bgcolor="#FFF" class="table table-bordered shadow">
+      <thead  class="bg-secondary text-light">
         <tr>
           <th>注文日</th>
           <th class="text-left">配送先</th>
@@ -35,6 +35,6 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate @orders %>
+    <p><%= paginate @orders, class: "justify-content-center" %></p>
   </div>
 </div>

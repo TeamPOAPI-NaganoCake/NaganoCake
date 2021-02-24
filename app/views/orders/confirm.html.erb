@@ -1,13 +1,11 @@
 <div class="container">
   <div class="row">
-    <h5 class="col-md-10 mx-auto">
-      <span style="background-color:#C0C0C0">注文情報確認</span>
-    </h5>
+    <h4 class="col-md-10 mx-auto">注文情報確認</h4>
   </div>
   <div class="row">
     <div class="col-8">
-      <table bgcolor="#FFF" class="table table-bordered">
-        <thead class="thead-light">
+      <table bgcolor="#FFF" class="table table-bordered shadow">
+        <thead class="bg-secondary text-light">
           <tr>
             <th class="text-left">商品名</th>
             <th>単価（税込）</th>
@@ -28,18 +26,18 @@
       </table>
     </div>
     <div class="col-4">
-      <table bgcolor="#FFF"  class="table table-bordered">
+      <table bgcolor="#FFF"  class="table table-bordered shadow">
         <thead class="thead-light">
           <tr>
-            <th class="text-left">送料</th>
+            <th class="text-left bg-secondary text-light">送料</th>
             <td><%= @order.shipping_price %></td>
           </tr>
           <tr>
-            <th class="text-left">商品合計</th>
+            <th class="text-left bg-secondary text-light">商品合計</th>
             <td><%= @order.total_price %></td>
           </tr>
           <tr>
-            <th class="text-left">請求金額</th>
+            <th class="text-left bg-secondary text-light">請求金額</th>
             <td><%= @order.billing_amount %></td>
           </tr>
         </thead>

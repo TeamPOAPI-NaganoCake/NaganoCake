@@ -1,42 +1,42 @@
 <div class="row">
-  <h2 class="col-md-10 mx-auto"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
+  <h4 class="col-md-10 mx-auto"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h4>
 </div>
 
 <br/>
 
 <div class="row">
   <div class="col-md-11 mx-auto">
-      <table class="table table-borderless">
+      <table bgcolor="#FFF" class="table table-bordered shadow">
         <tr>
-          <td>会員ID</td>
+          <th class="bg-secondary text-light">会員ID</td>
           <td><%= @customer.id %></td>
         </tr>
         <tr>
-          <td class="active">氏名</td>
+          <th class="bg-secondary text-light">氏名</td>
           <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
         </tr>
         <tr>
-          <td class="active">フリガナ</td>
+          <th class="bg-secondary text-light">フリガナ</td>
           <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
         </tr>
         <tr>
-          <td class="active">郵便番号</td>
+          <th class="bg-secondary text-light">郵便番号</td>
           <td><%= @customer.zip_code %></td>
         </tr>
         <tr>
-          <td class="active">住所</td>
+          <th class="bg-secondary text-light">住所</td>
           <td><%= @customer.address %></td>
         </tr>
         <tr>
-          <td class="active">電話番号</td>
+          <th class="bg-secondary text-light">電話番号</td>
           <td><%= @customer.phone_number %></td>
         </tr>
         <tr>
-          <td class="active">メールアドレス</td>
+          <th class="bg-secondary text-light">メールアドレス</td>
           <td><%= @customer.email %></td>
         </tr>
         <tr>
-          <td>会員ステータス</td>
+          <th class="bg-secondary text-light">会員ステータス</td>
           <td>
             <% if @customer.cancel_flag == false %>
               <i>退会</i>
