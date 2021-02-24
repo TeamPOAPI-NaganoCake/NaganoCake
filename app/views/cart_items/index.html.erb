@@ -50,7 +50,7 @@
     <div class="col-md-4">
       <table class="table table-bordered shadow">
         <tr>
-          <th class="bg-light">合計金額</th>
+          <th class="bg-secondary text-light">合計金額</th>
           <td class="font-weight-bold"><%= (@cart_items.to_a.sum{|x| x.item.non_tax_price * x.product_amount} * 1.1).floor.to_s(:delimited) %></td>
         </tr>
       </table>
