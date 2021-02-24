@@ -1,19 +1,22 @@
 <div class="row">
+  <div class="col-md-2 mx-auto">
+
   <%= render 'genre_search', genres: @genres %>
-  <div class="col-md-9 mx-auto">
-    <h2 class="mb-5"><%= @info %>一覧<span class="small"><%= "（全#{@item_all}件）" %></span></h2>
-    <div class= "d-flex flex-wrap">
+  </div>
+  <div class="col-md-10 mx-auto">
+    <h4 class="mb-5 font-weight-bold"><%= @info %>一覧<span class="small"><%= "（全#{@item_all}件）" %></span></h5>
+    <div class= "row row-cols-1 row-cols-md-2 row-cols-lg-4">
       <% @items.each do |item| %>
 
-        <div class="col-md-3 my-3">
-          <div class="card shadow">
-            <%= link_to item_path(item) do %>
+        <div class="col my-3">
+          <div class="card h-100 shadow">
+            <%= link_to item_path(item), :style=>"color:gray"  do %>
               <%= attachment_image_tag item, :image, fallback: "no-image.jpg", size: "100%", class: "card-img-top" %>
+              <div class="card-content px-3">
+                <h6 class="card-title pt-3"><%= item.name %></h6>
+                <p class="text-center"><%= "¥#{item.non_tax_price.to_s(:delimited)}" %></p>
+              </div>
             <% end %>
-            <div class="card-content px-3">
-              <p class="card-title text-nowrap overflow-auto pt-3"><%= link_to item.name, item_path(item), class: "text-secondary" %></p>
-              <p><%= "¥#{item.non_tax_price.to_s(:delimited)}" %></p>
-            </div>
           </div>
         </div>
 
