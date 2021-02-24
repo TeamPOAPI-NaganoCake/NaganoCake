@@ -1,6 +1,7 @@
 <div class="row">
-   <h5 class="title"><span style="background-color:#C0C0C0">ジャンル編集</span></h5>
+   <h2 class="title">ジャンル編集</h2>
 </div>
+<br/>
 <div class="row">
   <%= form_with model:@genre, url: admins_genre_path(@genre.id), method: :patch, local:true do |f| %>
     <div>

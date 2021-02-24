@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-3">
      <%= render 'genre_search', genres: @genres %>
+    </div>
     <div class="col-md-8 mx-auto d-flex position-relative">
       <p><%= attachment_image_tag @item, :image, :fill, 300, 200, fallback: "no-image.jpg", size: "300x200" %></p>
       <div class="ml-5">

@@ -1,6 +1,8 @@
 
   <div class="row">
+    <div class="col-md-3">
      <%= render 'genre_search', genres: @genres %>
+     </div>
     <div class="col-md-9 mx-auto">
 
       <h2 class="mb-5"><%= @info %>一覧<span class="small"><%= "（全#{@item_all}件）" %></span></h2>
@@ -15,8 +17,8 @@
           </div>
         <% end %>
       </div>
-
+  
       <p><%= paginate @items, class: "justify-content-center" %></p>
 
-
+</div>
   </div>
