@@ -48,11 +48,7 @@
       <%= link_to "買い物を続ける", items_path, class: "btn btn-primary shadow" %>
     </div>
     <div class="col-md-4">
-<<<<<<< HEAD
-      <table bgcolor="#FFF" class="table table-bordered">
-=======
       <table class="table table-bordered shadow">
->>>>>>> origin/bootstrap
         <tr>
           <th class="bg-secondary text-light">合計金額</th>
           <td class="font-weight-bold"><%= (@cart_items.to_a.sum{|x| x.item.non_tax_price * x.product_amount} * 1.1).floor.to_s(:delimited) %></td>
