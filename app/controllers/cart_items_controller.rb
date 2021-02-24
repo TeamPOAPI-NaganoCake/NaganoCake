@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-
+  before_action :authenticate_customer!
   before_action :setup_cart_item!, only: [:create, :update, :update, :destroy]
 
   def index
