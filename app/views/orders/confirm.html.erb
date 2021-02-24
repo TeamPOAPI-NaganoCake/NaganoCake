@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
-    <h4 class="col-md-10 mx-auto">注文情報確認</h4>
+    <div class="col-md-10 mx-auto">
+      <h4 class="font-weight-bold">注文情報確認</h4>
+    </div>
   </div>
   <div class="row">
     <div class="col-8">
@@ -17,9 +19,9 @@
         <% @cart_items.each do |cart| %>
         <tr>
           <th><%= attachment_image_tag cart.item, :image, :fill, 80, 50, fallback: "no-image.jpg", size: "80x50" %> <%= cart.item.name %></th>
-          <th class="align-middle"><%= cart.item.tax_include_price.to_s(:delimited) %></th>
-          <th class="align-middle"><%= cart.product_amount %></th>
-          <th class="align-middle"><%= (cart.item.tax_include_price * cart.product_amount).to_s(:delimited) %></th>
+          <td class="align-middle"><%= cart.item.tax_include_price.to_s(:delimited) %></th>
+          <td class="align-middle"><%= cart.product_amount %></th>
+          <td class="align-middle"><%= (cart.item.tax_include_price * cart.product_amount).to_s(:delimited) %></th>
         </tr>
         <% end %>
         </tbody>
@@ -46,7 +48,7 @@
   </div>
   <div class="row">
     <div class="col-2">
-      <h5>支払い方法</h5>
+      <h5 class="font-weight-bold">支払い方法</h5>
     </div>
     <div class="col-6">
       <p class="align-bottom"><%= @order.payment_method %></p>
@@ -54,7 +56,7 @@
   </div>
   <div class="row">
     <div class="col-2">
-      <h5>お届け先</h5>
+      <h5 class="font-weight-bold">お届け先</h5>
     </div>
     <div class="col-6">
       <p class="align-bottom">〒<%= @order.delivery_zip_code %> <%= @order.delivery_address %> <%= @order.delivery_name %></p>

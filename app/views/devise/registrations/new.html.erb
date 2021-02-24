@@ -1,5 +1,5 @@
 <div class="row">
-  <h4 class="title">新規会員登録<h4>
+  <h4 class="title font-weight-bold">新規会員登録<h4>
 </div>
 
 <div class="row">
@@ -9,17 +9,17 @@
 
   <table class='table table-borderless table-sm'>
     <tr>
-      <td>
+      <th>
         <p>名前</p>
-      </td>
-      <td>(性)</td>
+      </th>
+      <th>(性)</th>
       <td>
         <div class="field">
           <%= f.text_field :last_name, autofocus: true, placeholder: "令和 " %>
         </div>
       </td>
       <td></td>
-      <td>(名)</td>
+      <th>(名)</th>
       <td>
         <div class="field">
           <%= f.text_field :first_name, placeholder: "道⼦" %>
@@ -27,17 +27,17 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <th>
         <p>フリガナ</p>
-      </td>
-      <td>(セイ)</td>
+      </th>
+      <th>(セイ)</th>
       <td>
         <div class="field">
           <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" %>
         </div>
       </td>
       <td></td>
-      <td>(メイ)</td>
+      <th>(メイ)</th>
       <td>
         <div class="field">
           <%= f.text_field :first_name_kana, placeholder: "ミチコ" %>
@@ -45,9 +45,9 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <th>
         <p>メールアドレス</p>
-      </td>
+      </th>
       <td></td>
       <td>
         <div class="field">
@@ -56,9 +56,9 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <th>
         <p>郵便番号(ハイフンなし)</p>
-      </td>
+      </th>
       <td></td>
       <td>
         <div class="field">
@@ -67,9 +67,9 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <th>
         <p>住所</p>
-      </td>
+      </th>
       <td></td>
       <td colspan="4">
         <div class="field">
@@ -78,27 +78,27 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <th>
         <p>電話番号（ハイフンなし）</p>
-      </td>
+      </th>
       <td></td>
       <td>
         <%= f.text_field :phone_number, placeholder: "00000000000" %>
       </td>
     </tr>
     <tr>
-      <td>
+      <th>
         <p>パスワード（６文字以上）</p>
-      </td>
+      </th>
       <td></td>
       <td>
         <%= f.password_field :password, placeholder: "パスワード" %>
       </td>
     </tr>
     <tr>
-      <td>
+      <th>
         <p>パスワード（確認用）</p>
-      </td>
+      </th>
       <td></td>
       <td>
         <%= f.password_field :password_confirmation, placeholder: "パスワード確認用" %>

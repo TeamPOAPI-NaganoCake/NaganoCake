@@ -4,7 +4,7 @@
   <%- end -%> 
 </div> 
 <div class="row">
-  <h4 class="title">管理者ログイン</h4>
+  <h4 class="title font-weight-bold">管理者ログイン</h4>
 </div> 
 
 <div class="row">
@@ -12,11 +12,11 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <table class='table table-borderless'>
         <tr>
-          <td><%= f.label :email, "メールアドレス" %></td>
+          <th><%= f.label :email, "メールアドレス" %></th>
           <td><%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", size: "40" %></td>
         </tr>
         <tr>
-          <td><%= f.label :password, "パスワード" %></td>
+          <th><%= f.label :password, "パスワード" %></th>
           <td><%= f.password_field :password, size: "40" %></td>
         </tr>
         <tr>
