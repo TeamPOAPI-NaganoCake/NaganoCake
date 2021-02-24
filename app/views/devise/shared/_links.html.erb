@@ -1,0 +1,27 @@
+<%- if controller_name != 'sessions' %>
+<h5 class="title"><span style="background-color:#C0C0C0">既に登録済みの方</span></h5>
+<p class="devise-p"><%= link_to "こちら", new_session_path(resource_name) %>　からログインしてください</p>
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+	  <p class="title"><span style="background-color:#C0C0C0">会員登録がお済みでない方</span></p>
+	  <div class="text-center">
+	       <%= link_to "こちら", new_registration_path(resource_name) %>　から会員登録を行ってください。
+	    </div>
+	  </div>
+	<% end %>
+
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+  <% end %>
+<% end %>

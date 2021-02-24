@@ -1,0 +1,35 @@
+  <div class="row">
+    <div class="col-md-3 mx-auto">
+      <%= render 'genre_search', genres: @genres %>
+    </div>
+    <div class="col-md-9 mx-auto">
+      <div class="card shadow">
+        <div class="row no-gutters">
+          <div class="col-lg-6">
+            <%= attachment_image_tag @item, :image, fallback: "no-image.jpg", size: "100%", class: "card-img-top" %>
+          </div>
+          <div class="card-content col-lg-6 p-4">
+            <h5 class="card-title font-weight-bold"><%= @item.name %></h5>
+            <div class="card-text">
+              <p><%= @item.caption %></p>
+              <p class="lead font-weight-bold d-inline-block"><%= "¥#{@item.tax_include_price}" %></p><span class="small">（税込）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 ml-auto mt-5">
+        <%= form_with url: cart_items_path, local: true do |f| %>
+          <div class="row">
+            <div class="col-6">
+              <%= f.select :product_amount, (1..100).to_a, { include_blank: '個数選択' }, class: "form-control shadow" %>
+            </div>
+            <div class="col-6">
+              <%= f.hidden_field :item_id, value: @item.id %>
+              <%= f.submit "カートに入れる", class: "btn btn-success shadow" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+

@@ -4,12 +4,30 @@
     <title>Naganocake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <% if admin_signed_in? %>
+      <div class="search-form ">
+            <%= form_tag(search_path, method: :get) do %>
+              <%= text_field_tag 'search[content]' %>
+              <%= select_tag 'search[model]', options_for_select({ "会員（名字）" => "customer", "商品" => "item" }) %>
+              <%= select_tag 'search[how]', options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"  }) %>
+              <%= submit_tag '検索', class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
+      <div id="flash">
+        <%= render "layouts/flash" %>
+      </div>
+      <br/>
+      <%= yield %>
+    </div>
+    <footer class="footer"></footer>
   </body>
 </html>

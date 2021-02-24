@@ -1,0 +1,116 @@
+<div class="row">
+  <h4 class="col-md-10 mx-auto "><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
+</div>
+
+<br/>
+
+<div class="row"> 
+  <div class="col-md-10 mx-auto">
+  <%= form_with(model: @customer, url:admins_customer_path, local: true, method: :patch) do |f| %>
+  <table class='table table-borderless table-sm'> 
+
+    <tbody>
+     
+        <tr>
+          <th>
+            <p>会員ID</p>
+          </th>
+          <td>
+            <div class="field">
+              <%= @customer.id %>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            <p>氏名</p>
+          </th>
+          <td>
+            <div class="field">
+              <%= f.text_field :last_name, class: "form" %>
+              <%= f.text_field :first_name %>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            <p>フリガナ</p>
+          </th>
+          <td>
+            <div class="field">
+              <%= f.text_field :last_name_kana, class: "form" %>
+              <%= f.text_field :first_name_kana %>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            <p>郵便番号</p>
+          </th>
+          <td>
+            <div class="field">
+              <%= f.text_field :zip_code %>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            <p>住所</p>
+          </th>
+          <td>
+            <div class="field">
+              <%= f.text_field :address, style: "width: 100%;" %>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr>
+          <th>
+            <p>電話番号</p>
+          </th>
+          <td>
+            <div class="field">
+              <%= f.telephone_field :phone_number %>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            <p>メールアドレス</p>
+          </th>
+          <td>
+            <div class="field">
+              <%= f.text_field :email %>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            <p>会員ステータス</p>
+          </th>
+          <td>
+            <%= f.radio_button :cancel_flag, true %>
+            <%= f.label :cancel_flag, "有効", value: true, class: "form" %>
+            <%= f.radio_button :cancel_flag, false %>
+            <%= f.label :cancel_flag, "退会", value: false %>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <th><%= f.submit '変更を保存',class: "btn btn-success"%></th>
+          <td></td>
+        </tr>
+      
+    </tbody>
+  </table>
+  <% end %>
+  </div>
+</div>

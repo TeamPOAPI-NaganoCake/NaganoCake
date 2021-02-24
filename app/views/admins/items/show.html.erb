@@ -1,0 +1,66 @@
+<div class="container">
+  <h4 class="mx-5 mb-5 font-weight-bold">商品詳細</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <p><%= attachment_image_tag @item, :image, :fill, 300, 200, fallback: "no-image.jpg", size: "300x200" %></p>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-3">
+          <p class="small">商品名</p>
+        </div>
+        <div class="col-md-9">
+          <p><%= @item.name %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="small">商品説明</p>
+        </div>
+        <div class="col-md-9">
+          <p><%= @item.caption %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="small">ジャンル</p>
+        </div>
+        <div class="col-md-9">
+          <p><%= @item.genre.genre_name %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="small">
+            税込価格<br>
+            (税抜価格)
+          </p>
+        </div>
+        <div class="col-md-9">
+          <p class="d-inline-block">
+            <%= "#{@item.tax_include_price}(#{@item.non_tax_price})円" %>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="small">販売ステータス</p>
+        </div>
+        <div class="col-md-9">
+          <p class="d-inline-block">
+            <% if @item.sale_status == true %>
+              <span class="text-success font-weight-bold">販売中</span>
+            <% else %>
+              <span class="text-secondary font-weight-bold">販売停止</span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+  <div class="text-center">
+    <%= link_to "編集する", edit_admins_item_path(@item), class: "btn btn-success px-4" %>
+  </div>
+</div>

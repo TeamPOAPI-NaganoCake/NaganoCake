@@ -1,0 +1,9 @@
+<div class="genre_search">
+<h5 class="font-weight-bold genre-title">ジャンル検索</h5>
+<div class="genre-item">
+  <% genres.each do |genre| %>
+    <%= button_to genre.genre_name, {controller: 'items', action: 'index'}, {method: :get, class: "btn btn-link", :style=>"color: black;", params: {genre_id: genre.id}} %>
+  <% end %>
+  <%= link_to "全商品を見る", items_path, class: "btn btn-link btn-light", :style=>"color: black;" %>
+</div>
+</div>

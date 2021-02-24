@@ -1,0 +1,80 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        not_saved:
+          one: "エラーが発生したため新規登録が出来ませんでした。"
+          other: "%{count} 件のエラーが発生したため新規登録が出来ませんでした。"
+      models:
+        customer:
+          attributes:
+            email:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+            password:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+              confirmation: "が内容とあっていません。"
+            first_name:
+              blank: "が入力されていません。"
+            last_name:
+              blank: "が入力されていません。"
+            first_name_kana:
+              blank: "が入力されていません。"
+            last_name_kana:
+              blank: "が入力されていません。"
+            zip_code:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            address:
+              blank: "が入力されていません。"
+            phone_number:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            password_confirmation:
+              blank: "が入力されていません。"
+              confirmation: "が内容とあっていません。"
+            not_saved: "登録ができませんでした"
+    attributes:
+      customer:
+        current_password: "現在のパスワード"
+        first_name: "名前（性）"
+        last_name: "名前（名）"
+        first_name_kana: "フリガナ（セイ）"
+        last_name_kana: "フリガナ(メイ)"
+        zip_code: "郵便番号"
+        address: "住所"
+        phone_number: "電話番号"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "次回から自動的にログイン"
+    models:
+      customer: "ユーザー"
+
+    models:
+        admin:
+          attributes:
+            email:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+            password:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+              confirmation: "が内容とあっていません。"
+          attributes:
+            admin:
+              email: "メールアドレス"
+              

@@ -1,0 +1,79 @@
+
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+  <h4 class="font-weight-bold">
+    注文履歴詳細
+  </h4>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <h5  class="font-weight-bold">注文情報</h5>
+      <table bgcolor="#FFF" class="table table-bordered shadow">
+        <thead class="thead-light">
+          <tr>
+            <th class="bg-secondary text-light">注文日</th>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <th class="bg-secondary text-light">配送先</th>
+            <td>
+              〒<%= @order.delivery_zip_code %><br />
+              <%= @order.delivery_address %><br />
+              <%= @order.delivery_name %>
+            </td>
+          </tr>
+          <tr>
+            <th class="bg-secondary text-light">支払方法</th>
+            <td><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th class="bg-secondary text-light">ステータス</th>
+            <td><%= @order.order_status %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-4 offset-1">
+      <h5  class="font-weight-bold">請求情報</h5>
+      <table bgcolor="#FFF" class="table table-bordered shadow">
+        <thead class="thead-light">
+          <tr>
+            <th class="bg-secondary text-light">商品合計</th>
+            <td><%= @order.total_price.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class="bg-secondary text-light">配送料</th>
+            <td><%= @order.shipping_price %></td>
+          </tr>
+          <tr>
+            <th class="bg-secondary text-light">ご請求額</th>
+            <td><%= @order.billing_amount.to_s(:delimited) %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <h5  class="font-weight-bold">注文内容</h5>
+    <table bgcolor="#FFF" class="table table-bordered shadow">
+    <thead  class="bg-secondary text-light">
+          <tr>
+            <th>商品</th>
+            <th>単価（税込）</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+      </thead>
+      <tbody>
+      <% @order_items.each do |order_item| %>
+        <tr>
+          <th><%= order_item.item.name %></th>
+          <th><%= order_item.item.tax_include_price.to_s(:delimited) %></th>
+          <th><%= order_item.amount %></th>
+          <th><%= order_item.purchase_price.to_s(:delimited) %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

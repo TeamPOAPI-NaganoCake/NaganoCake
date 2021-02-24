@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+<<<<<<< HEAD
+  customer_id: 1
+  delivery_zipcode: 1
+  delivery_address: 1
+  delivery_name: MyString
+=======
+  customer_id: MyString
+  delivery_zip_code: MyString
+  delivery_address: MyString
+  delivery_name: MyString
+  total_price: 1
+>>>>>>> 03fa423b8822b8caa702cd72d3c50cd9642c05d4
+  shipping_price: 1
+  billing_amount: 1
+  payment_method: 1
+  order_status: 1
+
+two:
+<<<<<<< HEAD
+  customer_id: 1
+  delivery_zipcode: 1
+  delivery_address: 1
+  delivery_name: MyString
+=======
+  customer_id: MyString
+  delivery_zip_code: MyString
+  delivery_address: MyString
+  delivery_name: MyString
+  total_price: 1
+>>>>>>> 03fa423b8822b8caa702cd72d3c50cd9642c05d4
+  shipping_price: 1
+  billing_amount: 1
+  payment_method: 1
+  order_status: 1

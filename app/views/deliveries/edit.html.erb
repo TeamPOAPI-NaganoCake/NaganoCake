@@ -1,0 +1,31 @@
+<div class="row">
+  <h4 class="col-md-10 mx-auto font-weight-bold">配送先編集</h4>
+</div>
+ <br/>
+ <div class="row">
+  <div class="col-md-10 mx-auto" >
+    <%= form_with model:@delivery, local:true do |f| %>
+      <table class='table table-borderless table-sm'>
+        <tr>
+          <th width="36%">
+            <p>郵便番号（ハイフンなし）</p>
+          </th>
+          <td width="60%"><%= f.text_field :zip_code, autofocus: true %></td>
+        </tr>
+        <tr>
+          <th>
+            <p>住所</p>
+          </th>
+          <td><%= f.text_field :address, autofocus: true, style: "width: 100%;" %></td>
+        </tr>
+        <tr>
+          <th>
+            <p>宛名</p>
+          </th>
+          <td><%= f.text_field :name, autofocus: true %></td>
+          <td><%= f.submit "編集内容を保存", class: "btn btn-success" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
