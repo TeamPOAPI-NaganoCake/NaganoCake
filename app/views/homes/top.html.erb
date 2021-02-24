@@ -29,10 +29,10 @@
           <div>
             <%= attachment_image_tag item, :image,　format: 'jpeg', fallback: "no-image.jpg", size: "100%", class: "card-img-top" %>
           </div>
-            <h6 class="card-title"><%= item.name %></h6>
-            <p class="card-text">
+            <h6 class="card-title px-2 pt-2"><%= item.name %></h6>
+            <p class="card-text px-2">
             <% if item.sale_status == true %>
-              ¥<%= item.non_tax_price %>
+              <p class="text-center">¥<%= item.non_tax_price %></p>
             <% else %>
               売切れ
             <% end %>
