@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 offset-1">注文情報確認</div>
+    <h5 class="col-md-10 mx-auto">
+      <span style="background-color:#C0C0C0">注文情報確認</span>
+    </h5>
   </div>
   <div class="row">
     <div class="col-8">
@@ -61,6 +63,7 @@
     </div>
   </div>
   <div class="row justify-content-center">
+    <%# hidden_fieldで情報を受け渡し %>
     <%= form_with model: @order, local: true do |f| %>
       <%= f.hidden_field :customer_id %>
       <%= f.hidden_field :delivery_zip_code %>

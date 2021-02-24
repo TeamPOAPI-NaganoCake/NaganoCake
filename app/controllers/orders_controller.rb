@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
     @order.total_price = (@cart_items.sum{|x| x.item.non_tax_price * x.product_amount} * 1.1).floor # 購入金額
     @order.shipping_price = 800                                   # 送料
     @order.billing_amount = @order.total_price + @order.shipping_price # 購入金額 + 送料
+    # 選択したお届け先によるif分岐
     if params[:order][:delivery_address] == "customer_address"    # customerの登録住所へ送付
       @order.delivery_zip_code = current_customer.zip_code
       @order.delivery_address  = current_customer.address
@@ -38,6 +39,7 @@ class OrdersController < ApplicationController
       @order.delivery_zip_code = params[:order][:zip_code]
       @order.delivery_address  = params[:order][:address]
       @order.delivery_name     = params[:order][:name]
+      # 住所の保存
       @delivery.customer_id = current_customer.id
       @delivery.zip_code = @order.delivery_zip_code
       @delivery.address = @order.delivery_address
@@ -48,9 +50,9 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
-    # @delivery = Delivery.new(delivery_params)
     @order.save
     @cart_items = current_customer.cart_items.all
+    # OrderItemにCartItemの中身を保存
     @cart_items.each do |cart_item|
       @order_items = @order.order_items.new
       @order_items.item_id = cart_item.item.id
