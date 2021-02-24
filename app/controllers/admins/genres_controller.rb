@@ -3,7 +3,7 @@ class Admins::GenresController < ApplicationController
   
   def index
     @genre = Genre.new
-    @genres = Genre.all.page(params[:page]).per(10)
+    @genres = Genre.all.page(params[:page]).per(5)
   end
 
   def edit
@@ -16,7 +16,7 @@ class Admins::GenresController < ApplicationController
        flash[:notice] = "ジャンルを追加しました"
        redirect_to admins_genres_path
     else
-      @genres = Genre.all.page(params[:page]).per(10)
+      @genres = Genre.all.page(params[:page]).per(5)
       render :index
     end
   end
