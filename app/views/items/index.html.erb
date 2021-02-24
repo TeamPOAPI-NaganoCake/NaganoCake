@@ -14,7 +14,7 @@
               <%= attachment_image_tag item, :image, fallback: "no-image.jpg", size: "100%", class: "card-img-top" %>
               <div class="card-content px-3">
                 <h6 class="card-title pt-3"><%= item.name %></h6>
-                <p class="text-center"><%= "¥#{item.non_tax_price.to_s(:delimited)}" %></p>
+                <p class="text-center mt-auto"><%= "¥#{item.non_tax_price.to_s(:delimited)}" %></p>
               </div>
             <% end %>
           </div>
